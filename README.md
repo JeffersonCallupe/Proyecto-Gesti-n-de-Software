@@ -4,7 +4,7 @@ desarrollo y mantenimiento de aplicaciones y sistemas informáticos eficientes y
 <h3> 💡 Nuestra visión </h3>
 <p>Ser líder en la industria tecnológica, reconocida por su excelencia en la entrega de soluciones ideales y por su compromiso con la satisfacción de sus clientes.
   Además, busca contribuir al avance y transformación digital de las organizaciones, generando un impacto positivo en la sociedad a través de la tecnología.</p>
-<h3> 🌱 Nuestra visión </h3>
+<h3> 🌱 Nuestra misión </h3>
 <p>Es diseñar, desarrollar y ofrecer soluciones tecnológicas de <b>alta calidad</b> que satisfagan las necesidades y requerimientos de sus clientes.
 Su objetivo es brindar productos y servicios innovadores, confiables y eficientes, ayudando a sus clientes a alcanzar sus metas y maximizar su éxito
 en un entorno digital en constante evolución. Además, se compromete a mantener altos estándares de ética y profesionalismo, fomentando el crecimiento y desarrollo de su equipo de trabajo.</p>
