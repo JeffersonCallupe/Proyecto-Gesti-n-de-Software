@@ -226,6 +226,11 @@ public class Catalogo extends javax.swing.JFrame {
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 300, 80));
 
         jPanel9.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carrito-de-compras (1).png"))); // NOI18N
@@ -235,6 +240,11 @@ public class Catalogo extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CARRITO");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
         jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 110, 30));
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 300, 80));
@@ -334,42 +344,36 @@ public class Catalogo extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("TECLADOS");
         pnlCategorias.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 120, 30));
 
         jLabel20.setBackground(new java.awt.Color(0, 0, 0));
         jLabel20.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("TARJETAS GRÁFICAS");
         pnlCategorias.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 180, 30));
 
         jLabel22.setBackground(new java.awt.Color(0, 0, 0));
         jLabel22.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("PROCESADORES");
         pnlCategorias.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 140, 30));
 
         jLabel23.setBackground(new java.awt.Color(0, 0, 0));
         jLabel23.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("MOUSE");
         pnlCategorias.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 120, 30));
 
         jLabel24.setBackground(new java.awt.Color(0, 0, 0));
         jLabel24.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("IMPRESORA");
         pnlCategorias.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 120, 30));
 
         jLabel25.setBackground(new java.awt.Color(0, 0, 0));
         jLabel25.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("AURICULARES");
         pnlCategorias.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 140, 30));
@@ -434,7 +438,6 @@ public class Catalogo extends javax.swing.JFrame {
 
         lblProducto1.setBackground(new java.awt.Color(255, 255, 255));
         lblProducto1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto1.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP1.add(lblProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 240, 30));
 
@@ -442,7 +445,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP1.add(imProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 180, 180));
 
         lblProducto2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto2.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP1.add(lblProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 220, 30));
 
@@ -450,7 +452,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP1.add(imProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 180, 180));
 
         lblProducto3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto3.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP1.add(lblProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 260, 30));
 
@@ -458,7 +459,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP1.add(imProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 180, 180));
 
         lblProducto4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto4.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP1.add(lblProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 240, 30));
 
@@ -466,7 +466,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP1.add(imProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 180, 180));
 
         lblProducto5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto5.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP1.add(lblProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, 240, 30));
 
@@ -474,7 +473,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP1.add(imProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 180, 180));
 
         lblProducto6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto6.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP1.add(lblProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 260, 30));
 
@@ -500,14 +498,12 @@ public class Catalogo extends javax.swing.JFrame {
         jTabbedPane1.addTab("Productos 1", pnlPestañaP1);
 
         pnlPestañaP2.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPestañaP2.setForeground(new java.awt.Color(0, 0, 0));
         pnlPestañaP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imProducto7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         pnlPestañaP2.add(imProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
         lblProducto7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto7.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP2.add(lblProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
@@ -515,7 +511,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP2.add(imProducto8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
         lblProducto8.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto8.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP2.add(lblProducto8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
@@ -523,7 +518,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP2.add(imProducto9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
         lblProducto9.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto9.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP2.add(lblProducto9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
@@ -531,7 +525,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP2.add(imProducto10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
         lblProducto10.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto10.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP2.add(lblProducto10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
@@ -539,7 +532,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP2.add(imProducto11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
         lblProducto11.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto11.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP2.add(lblProducto11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
@@ -548,7 +540,6 @@ public class Catalogo extends javax.swing.JFrame {
 
         lblProducto12.setBackground(new java.awt.Color(51, 51, 51));
         lblProducto12.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto12.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP2.add(lblProducto12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
@@ -572,7 +563,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP3.add(imProducto13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
         lblProducto13.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto13.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP3.add(lblProducto13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
@@ -580,7 +570,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP3.add(imProducto14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
         lblProducto14.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto14.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP3.add(lblProducto14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
@@ -588,7 +577,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP3.add(imProducto15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
         lblProducto15.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto15.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP3.add(lblProducto15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
@@ -596,7 +584,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP3.add(imProducto16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
         lblProducto16.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto16.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP3.add(lblProducto16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
@@ -604,7 +591,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP3.add(imProducto17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
         lblProducto17.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto17.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP3.add(lblProducto17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
@@ -612,7 +598,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP3.add(imProducto18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
         lblProducto18.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto18.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP3.add(lblProducto18, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
@@ -636,7 +621,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP4.add(imProducto19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
         lblProducto19.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto19.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP4.add(lblProducto19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
@@ -644,7 +628,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP4.add(imProducto20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
         lblProducto20.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto20.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP4.add(lblProducto20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
@@ -652,7 +635,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP4.add(imProducto21, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
         lblProducto21.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto21.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP4.add(lblProducto21, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
@@ -660,7 +642,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP4.add(imProducto22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
         lblProducto22.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto22.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP4.add(lblProducto22, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
@@ -668,7 +649,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP4.add(imProducto23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
         lblProducto23.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto23.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP4.add(lblProducto23, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
@@ -676,7 +656,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP4.add(imProducto24, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
         lblProducto24.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto24.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP4.add(lblProducto24, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
@@ -700,7 +679,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP5.add(imProducto25, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
         lblProducto25.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto25.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP5.add(lblProducto25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
@@ -708,7 +686,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP5.add(imProducto26, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
         lblProducto26.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto26.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP5.add(lblProducto26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
@@ -716,7 +693,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP5.add(imProducto27, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
         lblProducto27.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto27.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP5.add(lblProducto27, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
@@ -724,7 +700,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP5.add(imProducto28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
         lblProducto28.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto28.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP5.add(lblProducto28, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
@@ -732,7 +707,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP5.add(imProducto29, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
         lblProducto29.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto29.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP5.add(lblProducto29, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
@@ -740,7 +714,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP5.add(imProducto30, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
         lblProducto30.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto30.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP5.add(lblProducto30, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
@@ -764,7 +737,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP6.add(imProducto31, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
         lblProducto31.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto31.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP6.add(lblProducto31, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
@@ -772,7 +744,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP6.add(imProducto32, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
         lblProducto32.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto32.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP6.add(lblProducto32, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
@@ -780,7 +751,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP6.add(imProducto33, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
         lblProducto33.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto33.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP6.add(lblProducto33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
@@ -788,7 +758,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP6.add(imProducto34, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
         lblProducto34.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto34.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP6.add(lblProducto34, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
@@ -796,7 +765,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP6.add(imProducto35, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
         lblProducto35.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto35.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP6.add(lblProducto35, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
@@ -804,7 +772,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP6.add(imProducto36, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
         lblProducto36.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto36.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP6.add(lblProducto36, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
@@ -828,7 +795,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP7.add(imProducto37, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
         lblProducto37.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto37.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP7.add(lblProducto37, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
@@ -836,7 +802,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP7.add(imProducto38, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
         lblProducto38.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto38.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP7.add(lblProducto38, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
@@ -844,7 +809,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP7.add(imProducto39, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
         lblProducto39.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto39.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP7.add(lblProducto39, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
@@ -852,7 +816,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP7.add(imProducto40, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
         lblProducto40.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto40.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP7.add(lblProducto40, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
@@ -860,7 +823,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP7.add(imProducto41, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
         lblProducto41.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto41.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP7.add(lblProducto41, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
@@ -868,7 +830,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlPestañaP7.add(imProducto42, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
         lblProducto42.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProducto42.setForeground(new java.awt.Color(0, 0, 0));
         lblProducto42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlPestañaP7.add(lblProducto42, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
@@ -1061,6 +1022,25 @@ public class Catalogo extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlTecladosMouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+
+ Carrito obj = new Carrito();
+     obj.setVisible(true);
+      this.setVisible(false);
+      this.setResizable(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+       Carrito obj = new Carrito();
+      obj.setVisible(true);
+      this.setVisible(false);
+      this.setResizable(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments
