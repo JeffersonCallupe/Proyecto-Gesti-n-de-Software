@@ -25,6 +25,7 @@ public class Catalogo extends javax.swing.JFrame {
         initComponents();
         llenarMatriz();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
