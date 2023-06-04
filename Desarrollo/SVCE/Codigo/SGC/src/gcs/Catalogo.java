@@ -41,6 +41,19 @@ public class Catalogo extends javax.swing.JFrame {
             i++;
         }   
     }
+    public void BusquedaP (ArrayList <Articulo> art, String termino){
+        int i=0,j=0;
+        Iterator<Articulo> itrArt = art.iterator();
+        while(itrArt.hasNext()){
+            if(art.get(i).getTipo().contains(termino)){
+                paneles[i].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
+                paneles[i].repaint();
+                labels[j].setText(art.get(i).getMarca());
+                j++;
+            }
+            i++;
+        }   
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -517,6 +530,11 @@ public class Catalogo extends javax.swing.JFrame {
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
             }
         });
         pnlPestañaP1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 330, -1));
@@ -1087,6 +1105,14 @@ public class Catalogo extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        // TODO add your handling code here:
+        String termino = new String();
+        termino = txtBuscar.getText();
+        BusquedaP(art,termino);
+        
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
     /**
      * @param args the command line arguments
