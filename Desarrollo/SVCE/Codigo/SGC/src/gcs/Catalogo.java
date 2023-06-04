@@ -19,6 +19,8 @@ public class Catalogo extends javax.swing.JFrame {
     ArrayList <Articulo> art = new ArrayList<>(); 
     org.edisoncor.gui.panel.PanelImage [] paneles = new  org.edisoncor.gui.panel.PanelImage [42];
     javax.swing.JLabel [] labels = new javax.swing.JLabel[42];
+        String tipo;
+
     /**
      * Creates new form Catalogo
      */
@@ -1009,7 +1011,6 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlProcesadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProcesadoresMouseClicked
         // TODO add your handling code here:
-        String tipo = new String();
         tipo = lblProcesador.getText();
         SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);      
@@ -1048,7 +1049,6 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlTarjetasGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTarjetasGMouseClicked
         // TODO add your handling code here:
-        String tipo = new String();
         tipo = lblTarjetaG.getText();
         SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
@@ -1057,7 +1057,6 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlImpresorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlImpresorasMouseClicked
         // TODO add your handling code here:
-        String tipo = new String();
         tipo = lblImpresora.getText();
         SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
@@ -1065,7 +1064,6 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlMousesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMousesMouseClicked
         // TODO add your handling code here:
-        String tipo = new String();
         tipo = lblMouse.getText();
         SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
@@ -1073,7 +1071,6 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlAuricularesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlAuricularesMouseClicked
         // TODO add your handling code here:
-        String tipo = new String();
         tipo = lblAuricular.getText();
         SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
@@ -1081,7 +1078,6 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlTecladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTecladosMouseClicked
         // TODO add your handling code here:
-        String tipo = new String();
         tipo = lblTeclados.getText();
         SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
@@ -1108,7 +1104,7 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         // TODO add your handling code here:
-        String termino = new String();
+        String termino;
         termino = txtBuscar.getText();
         BusquedaP(art,termino);
         
