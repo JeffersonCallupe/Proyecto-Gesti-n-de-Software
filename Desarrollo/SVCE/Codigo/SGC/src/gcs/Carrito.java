@@ -314,10 +314,10 @@ public class Carrito extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     Catalogo obj = new Catalogo();
-      obj.setVisible(true);
-      this.setVisible(false);
-      this.setResizable(false);
+        Catalogo obj = new Catalogo();
+        obj.setVisible(true);
+        this.setVisible(false);
+        this.setResizable(false);
       
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

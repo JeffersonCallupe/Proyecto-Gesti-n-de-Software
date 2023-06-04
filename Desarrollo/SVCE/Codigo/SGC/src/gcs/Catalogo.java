@@ -8,6 +8,7 @@ package gcs;
 
 import Clases.Articulo;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -27,7 +28,18 @@ public class Catalogo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-
+    public void BusquedaP (ArrayList <Articulo> art, String prod){
+        int j=0,i=0;
+        Iterator<Articulo> itrArt = art.iterator();
+        while(itrArt.hasNext()){
+            if(art.get(i).getTipo().equals(prod)){
+                
+                j++;
+            }
+            i++;
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,12 +74,12 @@ public class Catalogo extends javax.swing.JFrame {
         pnlImpresoras = new javax.swing.JPanel();
         pnlAuriculares = new javax.swing.JPanel();
         pnlTeclados = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        lblTeclados = new javax.swing.JLabel();
+        lblTarjetaG = new javax.swing.JLabel();
+        lblProcesador = new javax.swing.JLabel();
+        lblMouse = new javax.swing.JLabel();
+        lblImpresora = new javax.swing.JLabel();
+        lblAuricular = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -343,42 +355,49 @@ public class Catalogo extends javax.swing.JFrame {
         pnlTeclados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         pnlCategorias.add(pnlTeclados, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 180, 210));
 
-        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("TECLADOS");
-        pnlCategorias.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 120, 30));
+        lblTeclados.setBackground(new java.awt.Color(0, 0, 0));
+        lblTeclados.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblTeclados.setForeground(new java.awt.Color(0, 0, 0));
+        lblTeclados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTeclados.setText("TECLADOS");
+        pnlCategorias.add(lblTeclados, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 120, 30));
 
-        jLabel20.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel20.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("TARJETAS GRÁFICAS");
-        pnlCategorias.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 180, 30));
+        lblTarjetaG.setBackground(new java.awt.Color(0, 0, 0));
+        lblTarjetaG.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblTarjetaG.setForeground(new java.awt.Color(0, 0, 0));
+        lblTarjetaG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTarjetaG.setText("TARJETAS GRÁFICAS");
+        pnlCategorias.add(lblTarjetaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 180, 30));
 
-        jLabel22.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("PROCESADORES");
-        pnlCategorias.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 140, 30));
+        lblProcesador.setBackground(new java.awt.Color(0, 0, 0));
+        lblProcesador.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProcesador.setForeground(new java.awt.Color(0, 0, 0));
+        lblProcesador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblProcesador.setText("PROCESADORES");
+        pnlCategorias.add(lblProcesador, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 140, 30));
 
-        jLabel23.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel23.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("MOUSE");
-        pnlCategorias.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 120, 30));
+        lblMouse.setBackground(new java.awt.Color(0, 0, 0));
+        lblMouse.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblMouse.setForeground(new java.awt.Color(0, 0, 0));
+        lblMouse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMouse.setText("MOUSE");
+        pnlCategorias.add(lblMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 120, 30));
 
-        jLabel24.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel24.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("IMPRESORA");
-        pnlCategorias.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 120, 30));
+        lblImpresora.setBackground(new java.awt.Color(0, 0, 0));
+        lblImpresora.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblImpresora.setForeground(new java.awt.Color(0, 0, 0));
+        lblImpresora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImpresora.setText("IMPRESORAS");
+        pnlCategorias.add(lblImpresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 120, 30));
 
-        jLabel25.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel25.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("AURICULARES");
-        pnlCategorias.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 140, 30));
+        lblAuricular.setBackground(new java.awt.Color(0, 0, 0));
+        lblAuricular.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblAuricular.setForeground(new java.awt.Color(0, 0, 0));
+        lblAuricular.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAuricular.setText("AURICULARES");
+        pnlCategorias.add(lblAuricular, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 140, 30));
 
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asus.jpg"))); // NOI18N
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -387,6 +406,7 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 180, -1));
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/intel-core-i5165172.jpg"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -396,6 +416,7 @@ public class Catalogo extends javax.swing.JFrame {
         pnlCategorias.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 180, 190));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m3.jpg"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -404,6 +425,7 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 140, -1));
 
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora-epson-ecotank-l3210-multifuncional-pnc11cj68303-.jpg"))); // NOI18N
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -412,6 +434,7 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 180, -1));
 
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/auriculares.jpg"))); // NOI18N
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -421,6 +444,7 @@ public class Catalogo extends javax.swing.JFrame {
         pnlCategorias.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, -1));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te1.jpg"))); // NOI18N
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1001,6 +1025,8 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void pnlTarjetasGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTarjetasGMouseClicked
         // TODO add your handling code here:
+        String tipo = new String();
+        tipo = lblTarjetaG.getText();
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlTarjetasGMouseClicked
 
@@ -1138,16 +1164,10 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1157,6 +1177,10 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblAuricular;
+    private javax.swing.JLabel lblImpresora;
+    private javax.swing.JLabel lblMouse;
+    private javax.swing.JLabel lblProcesador;
     private javax.swing.JLabel lblProducto1;
     private javax.swing.JLabel lblProducto10;
     private javax.swing.JLabel lblProducto11;
@@ -1199,6 +1223,8 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JLabel lblProducto7;
     private javax.swing.JLabel lblProducto8;
     private javax.swing.JLabel lblProducto9;
+    private javax.swing.JLabel lblTarjetaG;
+    private javax.swing.JLabel lblTeclados;
     private javax.swing.JPanel pnlAuriculares;
     private javax.swing.JPanel pnlCategorias;
     private javax.swing.JPanel pnlImpresoras;
