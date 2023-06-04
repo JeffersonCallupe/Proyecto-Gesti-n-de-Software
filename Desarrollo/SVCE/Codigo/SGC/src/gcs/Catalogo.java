@@ -6,7 +6,7 @@
 
 package gcs;
 
-import Clases.Articulo;
+import Clases.Producto;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -16,7 +16,7 @@ import java.util.Iterator;
  * @author usuario
  */
 public class Catalogo extends javax.swing.JFrame {
-    ArrayList <Articulo> art = new ArrayList<>(); 
+    ArrayList <Producto> art = new ArrayList<>(); 
     org.edisoncor.gui.panel.PanelImage [] paneles = new  org.edisoncor.gui.panel.PanelImage [42];
     javax.swing.JLabel [] labels = new javax.swing.JLabel[42];
         String tipo;
@@ -30,22 +30,22 @@ public class Catalogo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-    public void SeleccionP (ArrayList <Articulo> art, String prod){
+    public void SeleccionP (ArrayList <Producto> art, String prod){
         int j=0,i=0;
-        Iterator<Articulo> itrArt = art.iterator();
+        Iterator<Producto> itrArt = art.iterator();
         while(itrArt.hasNext()){
             if(art.get(i).getTipo().equals(prod)){
-                paneles[i].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
-                paneles[i].repaint();
-                labels[j].setText(art.get(i).getMarca());
+                paneles[j].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
+                paneles[j].repaint();
+                labels[j].setText(art.get(i).getDescripcion());
                 j++;
             }
             i++;
         }   
     }
-    public void BusquedaP (ArrayList <Articulo> art, String termino){
+    public void BusquedaP (ArrayList <Producto> art, String termino){
         int i=0,j=0;
-        Iterator<Articulo> itrArt = art.iterator();
+        Iterator<Producto> itrArt = art.iterator();
         while(itrArt.hasNext()){
             if(art.get(i).getTipo().contains(termino)){
                 paneles[i].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
@@ -65,9 +65,8 @@ public class Catalogo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
@@ -80,7 +79,9 @@ public class Catalogo extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         jLabel14 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlCategorias = new javax.swing.JPanel();
@@ -209,16 +210,13 @@ public class Catalogo extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblName.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        lblName.setForeground(new java.awt.Color(255, 255, 255));
+        lblName.setText("TECHSALES");
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 230, 40));
+
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grupo-de-usuarios.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 140, 150));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("BIENVENIDO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 70, 40));
 
         jPanel7.setBackground(new java.awt.Color(255, 153, 0));
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -298,10 +296,19 @@ public class Catalogo extends javax.swing.JFrame {
 
         jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 300, 80));
 
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("TECHSALES");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 230, 40));
+        lblBienvenido.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(235, 235, 235));
+        lblBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBienvenido.setText("BIENVENIDO");
+        jPanel1.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 120, 40));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(235, 235, 235));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, 40));
+
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SOLOiconEmpresa.png"))); // NOI18N
+        jPanel1.add(panelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 45, 65, 65));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 700));
 
@@ -1194,7 +1201,6 @@ public class Catalogo extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelImage imProducto7;
     private org.edisoncor.gui.panel.PanelImage imProducto8;
     private org.edisoncor.gui.panel.PanelImage imProducto9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1203,8 +1209,6 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel49;
@@ -1219,8 +1223,11 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblAuricular;
+    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblImpresora;
     private javax.swing.JLabel lblMouse;
+    private javax.swing.JLabel lblName;
+    public javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblProcesador;
     private javax.swing.JLabel lblProducto1;
     private javax.swing.JLabel lblProducto10;
@@ -1266,6 +1273,7 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JLabel lblProducto9;
     private javax.swing.JLabel lblTarjetaG;
     private javax.swing.JLabel lblTeclados;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
     private javax.swing.JPanel pnlAuriculares;
     private javax.swing.JPanel pnlCategorias;
     private javax.swing.JPanel pnlImpresoras;
