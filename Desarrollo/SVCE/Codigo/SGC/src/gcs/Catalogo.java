@@ -7,8 +7,11 @@
 package gcs;
 
 import Clases.Producto;
+import bdMYSQL.SqlUsers;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -30,8 +33,10 @@ public class Catalogo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-    public void SeleccionP (ArrayList <Producto> art, String prod){
+    public void SeleccionP (ArrayList <Producto> art, String prod) throws SQLException{
+        SqlUsers mod= new SqlUsers();
         int j=0,i=0;
+        mod.ObtenerProducto(art);
         Iterator<Producto> itrArt = art.iterator();
         while(itrArt.hasNext()){
             if(art.get(i).getTipo().equals(prod)){
@@ -41,7 +46,7 @@ public class Catalogo extends javax.swing.JFrame {
                 j++;
             }
             i++;
-        }   
+        }
     }
     public void BusquedaP (ArrayList <Producto> art, String termino){
         int i=0,j=0;
@@ -893,7 +898,7 @@ public class Catalogo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    void llenarMatriz(){
+    private void llenarMatriz(){
         paneles [0] = imProducto1;
         paneles [1] = imProducto2;
         paneles [2] = imProducto3;
@@ -1019,7 +1024,11 @@ public class Catalogo extends javax.swing.JFrame {
     private void pnlProcesadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProcesadoresMouseClicked
         // TODO add your handling code here:
         tipo = lblProcesador.getText();
-        SeleccionP(art,tipo);
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
         jTabbedPane1.setSelectedIndex(1);      
     }//GEN-LAST:event_pnlProcesadoresMouseClicked
 
@@ -1057,7 +1066,11 @@ public class Catalogo extends javax.swing.JFrame {
     private void pnlTarjetasGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTarjetasGMouseClicked
         // TODO add your handling code here:
         tipo = lblTarjetaG.getText();
-        SeleccionP(art,tipo);
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
         jTabbedPane1.setSelectedIndex(1);
         
     }//GEN-LAST:event_pnlTarjetasGMouseClicked
@@ -1065,28 +1078,44 @@ public class Catalogo extends javax.swing.JFrame {
     private void pnlImpresorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlImpresorasMouseClicked
         // TODO add your handling code here:
         tipo = lblImpresora.getText();
-        SeleccionP(art,tipo);
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlImpresorasMouseClicked
 
     private void pnlMousesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMousesMouseClicked
         // TODO add your handling code here:
         tipo = lblMouse.getText();
-        SeleccionP(art,tipo);
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlMousesMouseClicked
 
     private void pnlAuricularesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlAuricularesMouseClicked
         // TODO add your handling code here:
         tipo = lblAuricular.getText();
-        SeleccionP(art,tipo);
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlAuricularesMouseClicked
 
     private void pnlTecladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTecladosMouseClicked
         // TODO add your handling code here:
         tipo = lblTeclados.getText();
-        SeleccionP(art,tipo);
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlTecladosMouseClicked
 
@@ -1133,22 +1162,16 @@ public class Catalogo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Catalogo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Catalogo().setVisible(true);
         });
     }
 

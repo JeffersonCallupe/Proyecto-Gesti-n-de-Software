@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
         
 public class SqlUsers extends ConexionBD{
     
-    public void ObtenerProducto (ArrayList <Producto> art) throws SQLException{
+    public void ObtenerProducto (ArrayList <Producto> producto) throws SQLException{
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM producto ";
@@ -25,7 +25,7 @@ public class SqlUsers extends ConexionBD{
                 prod.setStock(rs.getInt(5));
                 prod.setTipo(rs.getString(6));
                 prod.setImage(rs.getString(7));
-                art.add(prod);
+                producto.add(prod);
             }
         }catch (SQLException ex){
         }finally{
