@@ -26,6 +26,7 @@ CREATE TABLE `cliente` (
   `id_cliente` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   `apellido` varchar(50) DEFAULT NULL,
+  `dni` varchar(50) DEFAULT NULL,
   `telefono` varchar(50) DEFAULT NULL,
   `correo` varchar(50) DEFAULT NULL,
   `direccion` varchar(50) DEFAULT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (2,'Cristhian','Atuncar','923706131','cristhian.atuncar@gamarrita.com',NULL,NULL);
+INSERT INTO `cliente` VALUES (2,'Cristhian','Atuncar',NULL,'923706131','cristhian.atuncar@gamarrita.com',NULL,NULL);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,6 +59,7 @@ CREATE TABLE `producto` (
   `precio` float DEFAULT NULL,
   `stock` int DEFAULT NULL,
   `tipo` varchar(100) DEFAULT NULL,
+  `imagen` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id_producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -139,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-02 11:20:03
+-- Dump completed on 2023-06-04 10:54:35
