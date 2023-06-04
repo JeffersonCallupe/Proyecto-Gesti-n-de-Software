@@ -28,17 +28,18 @@ public class Catalogo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-    public void BusquedaP (ArrayList <Articulo> art, String prod){
+    public void SeleccionP (ArrayList <Articulo> art, String prod){
         int j=0,i=0;
         Iterator<Articulo> itrArt = art.iterator();
         while(itrArt.hasNext()){
             if(art.get(i).getTipo().equals(prod)){
-                
+                paneles[i].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
+                paneles[i].repaint();
+                labels[j].setText(art.get(i).getMarca());
                 j++;
             }
             i++;
-        }
-        
+        }   
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -989,7 +990,11 @@ public class Catalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void pnlProcesadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProcesadoresMouseClicked
-        jTabbedPane1.setSelectedIndex(1);        // TODO add your handling code here:
+        // TODO add your handling code here:
+        String tipo = new String();
+        tipo = lblProcesador.getText();
+        SeleccionP(art,tipo);
+        jTabbedPane1.setSelectedIndex(1);      
     }//GEN-LAST:event_pnlProcesadoresMouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
@@ -1027,26 +1032,40 @@ public class Catalogo extends javax.swing.JFrame {
         // TODO add your handling code here:
         String tipo = new String();
         tipo = lblTarjetaG.getText();
+        SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
+        
     }//GEN-LAST:event_pnlTarjetasGMouseClicked
 
     private void pnlImpresorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlImpresorasMouseClicked
         // TODO add your handling code here:
+        String tipo = new String();
+        tipo = lblImpresora.getText();
+        SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlImpresorasMouseClicked
 
     private void pnlMousesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMousesMouseClicked
         // TODO add your handling code here:
+        String tipo = new String();
+        tipo = lblMouse.getText();
+        SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlMousesMouseClicked
 
     private void pnlAuricularesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlAuricularesMouseClicked
         // TODO add your handling code here:
+        String tipo = new String();
+        tipo = lblAuricular.getText();
+        SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlAuricularesMouseClicked
 
     private void pnlTecladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTecladosMouseClicked
         // TODO add your handling code here:
+        String tipo = new String();
+        tipo = lblTeclados.getText();
+        SeleccionP(art,tipo);
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_pnlTecladosMouseClicked
 
