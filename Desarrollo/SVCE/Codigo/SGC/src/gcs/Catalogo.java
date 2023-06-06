@@ -6,20 +6,61 @@
 
 package gcs;
 
+import Clases.Producto;
+import bdMYSQL.SqlUsers;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author usuario
  */
 public class Catalogo extends javax.swing.JFrame {
+    ArrayList <Producto> art = new ArrayList<>(); 
+    org.edisoncor.gui.panel.PanelImage [] paneles = new  org.edisoncor.gui.panel.PanelImage [42];
+    javax.swing.JLabel [] labels = new javax.swing.JLabel[42];
+        String tipo;
 
     /**
      * Creates new form Catalogo
      */
     public Catalogo() {
         initComponents();
+        llenarMatriz();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
-
+    public void SeleccionP (ArrayList <Producto> art, String prod) throws SQLException{
+        SqlUsers mod= new SqlUsers();
+        int j=0,i=0;
+        mod.ObtenerProducto(art);
+        Iterator<Producto> itrArt = art.iterator();
+        while(itrArt.hasNext()){
+            if(art.get(i).getTipo().equals(prod)){
+                paneles[j].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
+                paneles[j].repaint();
+                labels[j].setText(art.get(i).getDescripcion());
+                j++;
+            }
+            i++;
+        }
+    }
+    public void BusquedaP (ArrayList <Producto> art, String termino){
+        int i=0,j=0;
+        Iterator<Producto> itrArt = art.iterator();
+        while(itrArt.hasNext()){
+            if(art.get(i).getTipo().contains(termino)){
+                paneles[i].setIcon(new javax.swing.ImageIcon (getClass().getResource(itrArt.next().getImage())));
+                paneles[i].repaint();
+                labels[j].setText(art.get(i).getMarca());
+                j++;
+            }
+            i++;
+        }   
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,9 +70,8 @@ public class Catalogo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
@@ -44,367 +84,128 @@ public class Catalogo extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         jLabel14 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        pnlCategorias = new javax.swing.JPanel();
+        pnlTarjetasG = new javax.swing.JPanel();
+        pnlProcesadores = new javax.swing.JPanel();
+        pnlMouses = new javax.swing.JPanel();
+        pnlImpresoras = new javax.swing.JPanel();
+        pnlAuriculares = new javax.swing.JPanel();
+        pnlTeclados = new javax.swing.JPanel();
+        lblTeclados = new javax.swing.JLabel();
+        lblTarjetaG = new javax.swing.JLabel();
+        lblProcesador = new javax.swing.JLabel();
+        lblMouse = new javax.swing.JLabel();
+        lblImpresora = new javax.swing.JLabel();
+        lblAuricular = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jLabel62 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jPanel20 = new javax.swing.JPanel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPanel21 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        jLabel68 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
-        jLabel70 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jPanel24 = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
-        jLabel69 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jPanel26 = new javax.swing.JPanel();
-        jLabel72 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
-        jLabel71 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        jLabel160 = new javax.swing.JLabel();
-        jLabel73 = new javax.swing.JLabel();
-        jPanel29 = new javax.swing.JPanel();
-        jLabel159 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
-        jPanel30 = new javax.swing.JPanel();
-        jLabel157 = new javax.swing.JLabel();
-        jLabel75 = new javax.swing.JLabel();
-        jPanel32 = new javax.swing.JPanel();
-        jLabel158 = new javax.swing.JLabel();
-        jLabel76 = new javax.swing.JLabel();
-        jPanel33 = new javax.swing.JPanel();
-        jLabel161 = new javax.swing.JLabel();
-        jLabel77 = new javax.swing.JLabel();
-        jPanel34 = new javax.swing.JPanel();
-        jLabel162 = new javax.swing.JLabel();
-        jLabel78 = new javax.swing.JLabel();
-        jLabel133 = new javax.swing.JLabel();
-        jLabel134 = new javax.swing.JLabel();
-        jLabel135 = new javax.swing.JLabel();
-        jLabel136 = new javax.swing.JLabel();
-        jLabel137 = new javax.swing.JLabel();
-        jLabel138 = new javax.swing.JLabel();
-        jLabel139 = new javax.swing.JLabel();
-        jLabel140 = new javax.swing.JLabel();
-        jLabel141 = new javax.swing.JLabel();
-        jLabel142 = new javax.swing.JLabel();
-        jLabel143 = new javax.swing.JLabel();
-        jLabel144 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel31 = new javax.swing.JPanel();
-        jPanel35 = new javax.swing.JPanel();
-        jLabel163 = new javax.swing.JLabel();
-        jLabel79 = new javax.swing.JLabel();
-        jPanel36 = new javax.swing.JPanel();
-        jLabel164 = new javax.swing.JLabel();
-        jLabel80 = new javax.swing.JLabel();
-        jPanel37 = new javax.swing.JPanel();
-        jLabel165 = new javax.swing.JLabel();
-        jLabel81 = new javax.swing.JLabel();
-        jPanel38 = new javax.swing.JPanel();
-        jLabel166 = new javax.swing.JLabel();
-        jLabel82 = new javax.swing.JLabel();
-        jPanel39 = new javax.swing.JPanel();
-        jLabel167 = new javax.swing.JLabel();
-        jLabel83 = new javax.swing.JLabel();
-        jPanel40 = new javax.swing.JPanel();
-        jLabel168 = new javax.swing.JLabel();
-        jLabel84 = new javax.swing.JLabel();
-        jLabel145 = new javax.swing.JLabel();
-        jLabel146 = new javax.swing.JLabel();
-        jLabel147 = new javax.swing.JLabel();
-        jLabel148 = new javax.swing.JLabel();
-        jLabel149 = new javax.swing.JLabel();
-        jLabel150 = new javax.swing.JLabel();
-        jLabel151 = new javax.swing.JLabel();
-        jLabel152 = new javax.swing.JLabel();
-        jLabel153 = new javax.swing.JLabel();
-        jLabel154 = new javax.swing.JLabel();
-        jLabel155 = new javax.swing.JLabel();
-        jLabel156 = new javax.swing.JLabel();
-        jPanel41 = new javax.swing.JPanel();
-        jPanel42 = new javax.swing.JPanel();
-        jLabel188 = new javax.swing.JLabel();
-        jLabel85 = new javax.swing.JLabel();
-        jPanel43 = new javax.swing.JPanel();
-        jLabel189 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
-        jPanel44 = new javax.swing.JPanel();
-        jLabel185 = new javax.swing.JLabel();
-        jLabel87 = new javax.swing.JLabel();
-        jPanel45 = new javax.swing.JPanel();
-        jLabel186 = new javax.swing.JLabel();
-        jLabel88 = new javax.swing.JLabel();
-        jPanel46 = new javax.swing.JPanel();
-        jLabel187 = new javax.swing.JLabel();
-        jLabel89 = new javax.swing.JLabel();
-        jPanel47 = new javax.swing.JPanel();
-        jLabel184 = new javax.swing.JLabel();
-        jLabel90 = new javax.swing.JLabel();
-        jLabel169 = new javax.swing.JLabel();
-        jLabel170 = new javax.swing.JLabel();
-        jLabel171 = new javax.swing.JLabel();
-        jLabel172 = new javax.swing.JLabel();
-        jLabel173 = new javax.swing.JLabel();
-        jLabel174 = new javax.swing.JLabel();
-        jLabel175 = new javax.swing.JLabel();
-        jLabel176 = new javax.swing.JLabel();
-        jLabel177 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jPanel48 = new javax.swing.JPanel();
-        jPanel49 = new javax.swing.JPanel();
-        jLabel190 = new javax.swing.JLabel();
-        jLabel97 = new javax.swing.JLabel();
-        jPanel50 = new javax.swing.JPanel();
-        jLabel191 = new javax.swing.JLabel();
-        jLabel92 = new javax.swing.JLabel();
-        jPanel51 = new javax.swing.JPanel();
-        jLabel192 = new javax.swing.JLabel();
-        jLabel93 = new javax.swing.JLabel();
-        jPanel52 = new javax.swing.JPanel();
-        jLabel193 = new javax.swing.JLabel();
-        jLabel94 = new javax.swing.JLabel();
-        jPanel53 = new javax.swing.JPanel();
-        jLabel194 = new javax.swing.JLabel();
-        jLabel95 = new javax.swing.JLabel();
-        jPanel54 = new javax.swing.JPanel();
-        jLabel195 = new javax.swing.JLabel();
-        jLabel96 = new javax.swing.JLabel();
-        jLabel178 = new javax.swing.JLabel();
-        jLabel179 = new javax.swing.JLabel();
-        jLabel180 = new javax.swing.JLabel();
-        jLabel181 = new javax.swing.JLabel();
-        jLabel182 = new javax.swing.JLabel();
-        jLabel183 = new javax.swing.JLabel();
-        jPanel55 = new javax.swing.JPanel();
-        jPanel56 = new javax.swing.JPanel();
-        jLabel214 = new javax.swing.JLabel();
-        jLabel91 = new javax.swing.JLabel();
-        jPanel57 = new javax.swing.JPanel();
-        jLabel215 = new javax.swing.JLabel();
-        jLabel98 = new javax.swing.JLabel();
-        jPanel58 = new javax.swing.JPanel();
-        jLabel216 = new javax.swing.JLabel();
-        jLabel99 = new javax.swing.JLabel();
-        jPanel59 = new javax.swing.JPanel();
-        jLabel217 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        jPanel60 = new javax.swing.JPanel();
-        jLabel218 = new javax.swing.JLabel();
-        jLabel101 = new javax.swing.JLabel();
-        jPanel61 = new javax.swing.JPanel();
-        jLabel219 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
-        jLabel196 = new javax.swing.JLabel();
-        jLabel197 = new javax.swing.JLabel();
-        jLabel198 = new javax.swing.JLabel();
-        jLabel199 = new javax.swing.JLabel();
-        jLabel200 = new javax.swing.JLabel();
-        jLabel201 = new javax.swing.JLabel();
-        jLabel208 = new javax.swing.JLabel();
-        jLabel209 = new javax.swing.JLabel();
-        jLabel210 = new javax.swing.JLabel();
-        jLabel211 = new javax.swing.JLabel();
-        jLabel212 = new javax.swing.JLabel();
-        jLabel213 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jPanel62 = new javax.swing.JPanel();
-        jPanel63 = new javax.swing.JPanel();
-        jLabel220 = new javax.swing.JLabel();
-        jLabel103 = new javax.swing.JLabel();
-        jPanel64 = new javax.swing.JPanel();
-        jLabel221 = new javax.swing.JLabel();
-        jLabel104 = new javax.swing.JLabel();
-        jPanel65 = new javax.swing.JPanel();
-        jLabel222 = new javax.swing.JLabel();
-        jLabel105 = new javax.swing.JLabel();
-        jPanel66 = new javax.swing.JPanel();
-        jLabel106 = new javax.swing.JLabel();
-        jPanel67 = new javax.swing.JPanel();
-        jLabel224 = new javax.swing.JLabel();
-        jLabel107 = new javax.swing.JLabel();
-        jPanel68 = new javax.swing.JPanel();
-        jLabel225 = new javax.swing.JLabel();
-        jLabel108 = new javax.swing.JLabel();
-        jLabel202 = new javax.swing.JLabel();
-        jLabel203 = new javax.swing.JLabel();
-        jLabel204 = new javax.swing.JLabel();
-        jLabel205 = new javax.swing.JLabel();
-        jLabel206 = new javax.swing.JLabel();
-        jLabel207 = new javax.swing.JLabel();
-        jLabel223 = new javax.swing.JLabel();
-        jPanel69 = new javax.swing.JPanel();
-        jPanel70 = new javax.swing.JPanel();
-        jLabel238 = new javax.swing.JLabel();
-        jLabel109 = new javax.swing.JLabel();
-        jPanel71 = new javax.swing.JPanel();
-        jLabel239 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jPanel72 = new javax.swing.JPanel();
-        jLabel240 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jPanel73 = new javax.swing.JPanel();
-        jLabel241 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jPanel74 = new javax.swing.JPanel();
-        jLabel242 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jPanel75 = new javax.swing.JPanel();
-        jLabel243 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel226 = new javax.swing.JLabel();
-        jLabel227 = new javax.swing.JLabel();
-        jLabel228 = new javax.swing.JLabel();
-        jLabel229 = new javax.swing.JLabel();
-        jLabel230 = new javax.swing.JLabel();
-        jLabel231 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jPanel76 = new javax.swing.JPanel();
-        jPanel77 = new javax.swing.JPanel();
-        jLabel244 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jPanel78 = new javax.swing.JPanel();
-        jLabel245 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jPanel79 = new javax.swing.JPanel();
-        jLabel246 = new javax.swing.JLabel();
-        jLabel117 = new javax.swing.JLabel();
-        jPanel80 = new javax.swing.JPanel();
-        jLabel247 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jPanel81 = new javax.swing.JPanel();
-        jLabel248 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jPanel82 = new javax.swing.JPanel();
-        jLabel249 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel232 = new javax.swing.JLabel();
-        jLabel233 = new javax.swing.JLabel();
-        jLabel234 = new javax.swing.JLabel();
-        jLabel235 = new javax.swing.JLabel();
-        jLabel236 = new javax.swing.JLabel();
-        jLabel237 = new javax.swing.JLabel();
-        jPanel83 = new javax.swing.JPanel();
-        jPanel84 = new javax.swing.JPanel();
-        jLabel262 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
-        jPanel85 = new javax.swing.JPanel();
-        jLabel263 = new javax.swing.JLabel();
-        jLabel122 = new javax.swing.JLabel();
-        jPanel86 = new javax.swing.JPanel();
-        jLabel264 = new javax.swing.JLabel();
-        jLabel123 = new javax.swing.JLabel();
-        jPanel87 = new javax.swing.JPanel();
-        jLabel265 = new javax.swing.JLabel();
-        jLabel124 = new javax.swing.JLabel();
-        jPanel88 = new javax.swing.JPanel();
-        jLabel266 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
-        jPanel89 = new javax.swing.JPanel();
-        jLabel267 = new javax.swing.JLabel();
-        jLabel126 = new javax.swing.JLabel();
-        jLabel250 = new javax.swing.JLabel();
-        jLabel251 = new javax.swing.JLabel();
-        jLabel252 = new javax.swing.JLabel();
-        jLabel253 = new javax.swing.JLabel();
-        jLabel254 = new javax.swing.JLabel();
-        jLabel255 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jPanel90 = new javax.swing.JPanel();
-        jPanel91 = new javax.swing.JPanel();
-        jLabel268 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
-        jPanel92 = new javax.swing.JPanel();
-        jLabel269 = new javax.swing.JLabel();
-        jLabel128 = new javax.swing.JLabel();
-        jPanel93 = new javax.swing.JPanel();
-        jLabel270 = new javax.swing.JLabel();
-        jLabel129 = new javax.swing.JLabel();
-        jPanel94 = new javax.swing.JPanel();
-        jLabel271 = new javax.swing.JLabel();
-        jLabel130 = new javax.swing.JLabel();
-        jPanel95 = new javax.swing.JPanel();
-        jLabel272 = new javax.swing.JLabel();
-        jLabel131 = new javax.swing.JLabel();
-        jPanel96 = new javax.swing.JPanel();
-        jLabel273 = new javax.swing.JLabel();
-        jLabel132 = new javax.swing.JLabel();
-        jLabel256 = new javax.swing.JLabel();
-        jLabel257 = new javax.swing.JLabel();
-        jLabel258 = new javax.swing.JLabel();
-        jLabel259 = new javax.swing.JLabel();
-        jLabel260 = new javax.swing.JLabel();
-        jLabel261 = new javax.swing.JLabel();
+        pnlPestañaP1 = new javax.swing.JPanel();
+        imProducto1 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto1 = new javax.swing.JLabel();
+        imProducto2 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto2 = new javax.swing.JLabel();
+        imProducto3 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto3 = new javax.swing.JLabel();
+        imProducto4 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto4 = new javax.swing.JLabel();
+        imProducto5 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto5 = new javax.swing.JLabel();
+        imProducto6 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto6 = new javax.swing.JLabel();
+        btnSiguiente1 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        pnlPestañaP2 = new javax.swing.JPanel();
+        imProducto7 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto7 = new javax.swing.JLabel();
+        imProducto8 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto8 = new javax.swing.JLabel();
+        imProducto9 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto9 = new javax.swing.JLabel();
+        imProducto10 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto10 = new javax.swing.JLabel();
+        imProducto11 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto11 = new javax.swing.JLabel();
+        imProducto12 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto12 = new javax.swing.JLabel();
+        btnSiguiente2 = new javax.swing.JButton();
+        pnlPestañaP3 = new javax.swing.JPanel();
+        imProducto13 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto13 = new javax.swing.JLabel();
+        imProducto14 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto14 = new javax.swing.JLabel();
+        imProducto15 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto15 = new javax.swing.JLabel();
+        imProducto16 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto16 = new javax.swing.JLabel();
+        imProducto17 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto17 = new javax.swing.JLabel();
+        imProducto18 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto18 = new javax.swing.JLabel();
+        btnSiguiente3 = new javax.swing.JButton();
+        pnlPestañaP4 = new javax.swing.JPanel();
+        imProducto19 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto19 = new javax.swing.JLabel();
+        imProducto20 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto20 = new javax.swing.JLabel();
+        imProducto21 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto21 = new javax.swing.JLabel();
+        imProducto22 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto22 = new javax.swing.JLabel();
+        imProducto23 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto23 = new javax.swing.JLabel();
+        imProducto24 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto24 = new javax.swing.JLabel();
+        btnSiguiente4 = new javax.swing.JButton();
+        pnlPestañaP5 = new javax.swing.JPanel();
+        imProducto25 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto25 = new javax.swing.JLabel();
+        imProducto26 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto26 = new javax.swing.JLabel();
+        imProducto27 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto27 = new javax.swing.JLabel();
+        imProducto28 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto28 = new javax.swing.JLabel();
+        imProducto29 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto29 = new javax.swing.JLabel();
+        imProducto30 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto30 = new javax.swing.JLabel();
+        btnSiguiente5 = new javax.swing.JButton();
+        pnlPestañaP6 = new javax.swing.JPanel();
+        imProducto31 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto31 = new javax.swing.JLabel();
+        imProducto32 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto32 = new javax.swing.JLabel();
+        imProducto33 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto33 = new javax.swing.JLabel();
+        imProducto34 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto34 = new javax.swing.JLabel();
+        imProducto35 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto35 = new javax.swing.JLabel();
+        imProducto36 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto36 = new javax.swing.JLabel();
+        btnSiguiente6 = new javax.swing.JButton();
+        pnlPestañaP7 = new javax.swing.JPanel();
+        imProducto37 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto37 = new javax.swing.JLabel();
+        imProducto38 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto38 = new javax.swing.JLabel();
+        imProducto39 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto39 = new javax.swing.JLabel();
+        imProducto40 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto40 = new javax.swing.JLabel();
+        imProducto41 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto41 = new javax.swing.JLabel();
+        imProducto42 = new org.edisoncor.gui.panel.PanelImage();
+        lblProducto42 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -414,15 +215,13 @@ public class Catalogo extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblName.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        lblName.setForeground(new java.awt.Color(255, 255, 255));
+        lblName.setText("TECHSALES");
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 230, 40));
+
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grupo-de-usuarios.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 140, 150));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("BIENVENIDO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 70, 40));
 
         jPanel7.setBackground(new java.awt.Color(255, 153, 0));
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -435,7 +234,9 @@ public class Catalogo extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/categorizacion.png"))); // NOI18N
         jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 60));
 
+        jLabel49.setBackground(new java.awt.Color(255, 255, 255));
         jLabel49.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
         jLabel49.setText("CATEGORÍAS");
         jPanel7.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 110, 30));
 
@@ -448,20 +249,34 @@ public class Catalogo extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
         jPanel8.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, -1));
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("MIS COMPRAS");
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 120, 30));
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 300, 80));
 
         jPanel9.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carrito-de-compras (1).png"))); // NOI18N
         jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 70));
 
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CARRITO");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
         jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 110, 30));
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 300, 80));
@@ -478,1634 +293,858 @@ public class Catalogo extends javax.swing.JFrame {
         jLabel9.setToolTipText("");
         jPanel10.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SALIR");
         jPanel10.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 110, 30));
 
         jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 300, 80));
 
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("TECHSALES");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 230, 40));
+        lblBienvenido.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(235, 235, 235));
+        lblBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBienvenido.setText("BIENVENIDO");
+        jPanel1.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 120, 40));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(235, 235, 235));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, 40));
+
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SOLOiconEmpresa.png"))); // NOI18N
+        jPanel1.add(panelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 45, 65, 65));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 700));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ff9911.png"))); // NOI18N
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 990, 120));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 204, 153));
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTarjetasG.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTarjetasG.setOpaque(false);
+        pnlTarjetasG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel3MouseClicked(evt);
+                pnlTarjetasGMouseClicked(evt);
             }
         });
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlTarjetasG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(pnlTarjetasG, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 200, 220));
 
+        pnlProcesadores.setBackground(new java.awt.Color(255, 255, 255));
+        pnlProcesadores.setOpaque(false);
+        pnlProcesadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlProcesadoresMouseClicked(evt);
+            }
+        });
+        pnlProcesadores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(pnlProcesadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 200, 220));
+
+        pnlMouses.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMouses.setOpaque(false);
+        pnlMouses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlMousesMouseClicked(evt);
+            }
+        });
+        pnlMouses.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(pnlMouses, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 190, 230));
+
+        pnlImpresoras.setBackground(new java.awt.Color(255, 255, 255));
+        pnlImpresoras.setOpaque(false);
+        pnlImpresoras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlImpresorasMouseClicked(evt);
+            }
+        });
+        pnlImpresoras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(pnlImpresoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 210, 240));
+
+        pnlAuriculares.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAuriculares.setOpaque(false);
+        pnlAuriculares.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlAuricularesMouseClicked(evt);
+            }
+        });
+        pnlAuriculares.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(pnlAuriculares, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 210, 240));
+
+        pnlTeclados.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTeclados.setOpaque(false);
+        pnlTeclados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlTecladosMouseClicked(evt);
+            }
+        });
+        pnlTeclados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(pnlTeclados, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 180, 210));
+
+        lblTeclados.setBackground(new java.awt.Color(0, 0, 0));
+        lblTeclados.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblTeclados.setForeground(new java.awt.Color(0, 0, 0));
+        lblTeclados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTeclados.setText("TECLADOS");
+        pnlCategorias.add(lblTeclados, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 120, 30));
+
+        lblTarjetaG.setBackground(new java.awt.Color(0, 0, 0));
+        lblTarjetaG.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblTarjetaG.setForeground(new java.awt.Color(0, 0, 0));
+        lblTarjetaG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTarjetaG.setText("TARJETAS GRÁFICAS");
+        pnlCategorias.add(lblTarjetaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 180, 30));
+
+        lblProcesador.setBackground(new java.awt.Color(0, 0, 0));
+        lblProcesador.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProcesador.setForeground(new java.awt.Color(0, 0, 0));
+        lblProcesador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblProcesador.setText("PROCESADORES");
+        pnlCategorias.add(lblProcesador, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 140, 30));
+
+        lblMouse.setBackground(new java.awt.Color(0, 0, 0));
+        lblMouse.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblMouse.setForeground(new java.awt.Color(0, 0, 0));
+        lblMouse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMouse.setText("MOUSE");
+        pnlCategorias.add(lblMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 120, 30));
+
+        lblImpresora.setBackground(new java.awt.Color(0, 0, 0));
+        lblImpresora.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblImpresora.setForeground(new java.awt.Color(0, 0, 0));
+        lblImpresora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImpresora.setText("IMPRESORAS");
+        pnlCategorias.add(lblImpresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 120, 30));
+
+        lblAuricular.setBackground(new java.awt.Color(0, 0, 0));
+        lblAuricular.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblAuricular.setForeground(new java.awt.Color(0, 0, 0));
+        lblAuricular.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAuricular.setText("AURICULARES");
+        pnlCategorias.add(lblAuricular, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 140, 30));
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asus.jpg"))); // NOI18N
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel12MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        pnlCategorias.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 180, -1));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 180, 180));
-
-        jPanel4.setBackground(new java.awt.Color(255, 204, 153));
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel4MouseClicked(evt);
-            }
-        });
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/intel-core-i5165172.jpg"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 200));
-
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 180, 180));
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel5MouseClicked(evt);
-            }
-        });
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 180, 190));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m3.jpg"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        pnlCategorias.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 140, -1));
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 180, 180));
-
-        jPanel6.setBackground(new java.awt.Color(255, 204, 153));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora-epson-ecotank-l3210-multifuncional-pnc11cj68303-.jpg"))); // NOI18N
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel15MouseClicked(evt);
             }
         });
-        jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        pnlCategorias.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 180, -1));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 180, 180));
-
-        jPanel11.setBackground(new java.awt.Color(255, 204, 153));
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/auriculares.jpg"))); // NOI18N
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel16MouseClicked(evt);
             }
         });
-        jPanel11.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, 180));
-
-        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCategorias.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, -1));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te1.jpg"))); // NOI18N
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel17MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        pnlCategorias.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, 160, 160));
 
-        jPanel2.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, 180, 180));
+        jTabbedPane1.addTab("Categorias", pnlCategorias);
 
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel6.setText("TECLADOS");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 490, 110, 30));
+        pnlPestañaP1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel20.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel20.setText("TARJETAS GRÁFICAS");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 180, 30));
+        imProducto1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP1.add(imProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 180, 180));
 
-        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel22.setText("PROCESADORES");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 140, 30));
+        lblProducto1.setBackground(new java.awt.Color(255, 255, 255));
+        lblProducto1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP1.add(lblProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 240, 30));
 
-        jLabel23.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel23.setText("MOUSE");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 240, 70, 30));
+        imProducto2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP1.add(imProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 180, 180));
 
-        jLabel24.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel24.setText("IMPRESORA");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, 110, 30));
+        lblProducto2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP1.add(lblProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 220, 30));
 
-        jLabel25.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel25.setText("AURICULARES");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, 140, 30));
+        imProducto3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP1.add(imProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 180, 180));
 
-        jTabbedPane1.addTab("tab1", jPanel2);
+        lblProducto3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP1.add(lblProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 260, 30));
 
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP1.add(imProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 180, 180));
 
-        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblProducto4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP1.add(lblProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 240, 30));
 
-        jLabel67.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel67.setText("1000s/");
-        jPanel15.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        imProducto5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP1.add(imProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 180, 180));
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tg6.png"))); // NOI18N
-        jLabel31.setText("jLabel31");
-        jPanel15.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
+        lblProducto5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP1.add(lblProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, 240, 30));
 
-        jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 180, 180));
+        imProducto6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP1.add(imProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 180, 180));
 
-        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblProducto6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP1.add(lblProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 260, 30));
 
-        jLabel63.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel63.setText("2100s/");
-        jPanel16.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 60, 20));
-
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tg2.png"))); // NOI18N
-        jPanel16.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jPanel14.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 190, -1));
-
-        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel61.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel61.setText("2312s/");
-        jPanel17.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tg3.png"))); // NOI18N
-        jPanel17.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
-
-        jPanel14.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 180, 180));
-
-        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel62.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel62.setText("1699s/");
-        jPanel18.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarjeta grafica 1.png"))); // NOI18N
-        jPanel18.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
-
-        jPanel14.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 180, 180));
-
-        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel65.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel65.setText("2542s/");
-        jPanel19.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 60, 20));
-
-        jLabel29.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tg4.png"))); // NOI18N
-        jLabel29.setText("jLabel29");
-        jPanel19.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 180, 170));
-
-        jPanel14.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 180, 180));
-
-        jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel66.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel66.setText("1490s/");
-        jPanel20.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tg5.png"))); // NOI18N
-        jPanel20.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
-
-        jPanel14.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 180, 180));
-
-        jLabel19.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel19.setText("Gtx 1060 Mini Itx Oc 3gb");
-        jPanel14.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 240, 30));
-
-        jLabel33.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel33.setText("Tarjeta Grafica Rtx 3060ti ");
-        jPanel14.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 250, 30));
-
-        jLabel34.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel34.setText("Tarjeta Gráfica Rog Strix ");
-        jPanel14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
-
-        jLabel35.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel35.setText("Rtx 3080 Ti Oc ");
-        jPanel14.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 130, 30));
-
-        jLabel36.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel36.setText("3060 Ti Vision Oc 8gb");
-        jPanel14.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 200, 30));
-
-        jLabel37.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel37.setText("GTX 1660 SUPER DUAL 6GB");
-        jPanel14.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 250, 30));
-
-        jLabel38.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel38.setText("Gtx 1080 Ti 11gb Oc Gddr5x");
-        jPanel14.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 250, 30));
-
-        jLabel39.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel39.setText("Msi Doble Ventilador");
-        jPanel14.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 180, 30));
-
-        jLabel40.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel40.setText("Tarjeta Grafica Asus Rog Strix");
-        jPanel14.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 260, 30));
-
-        jLabel41.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel41.setText("Tarjeta Gráfica Geforce Rtx ");
-        jPanel14.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 240, 30));
-
-        jLabel42.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel42.setText("Tarjeta Gráfica Nvidia Asus  ");
-        jPanel14.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 240, 30));
-
-        jLabel43.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel43.setText("Tarjeta Grafica Gigabyte Geforce ");
-        jPanel14.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 310, 30));
-
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        jButton1.setText("SIGUIENTE");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente1.setBackground(new java.awt.Color(255, 153, 0));
+        btnSiguiente1.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnSiguiente1.setText("SIGUIENTE");
+        btnSiguiente1.setBorder(null);
+        btnSiguiente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSiguiente1ActionPerformed(evt);
             }
         });
-        jPanel14.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 400, 70, 60));
+        pnlPestañaP1.add(btnSiguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
 
-        jTabbedPane1.addTab("tab2", jPanel14);
-
-        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel68.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel68.setText("2000s/");
-        jPanel22.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amd1.png"))); // NOI18N
-        jPanel22.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel21.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 180, 180));
-
-        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel70.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel70.setText("2200s/");
-        jPanel23.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amd4.png"))); // NOI18N
-        jPanel23.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel21.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 180, 180));
-
-        jPanel24.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel64.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel64.setText("1449s/");
-        jPanel24.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amd3.png"))); // NOI18N
-        jPanel24.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel21.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 180, 180));
-
-        jPanel25.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel69.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel69.setText("2100s/");
-        jPanel25.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amd2.png"))); // NOI18N
-        jLabel21.setText("jLabel21");
-        jPanel25.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel21.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 180, 180));
-
-        jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel72.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel72.setText("1500s/");
-        jPanel26.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amd5.png"))); // NOI18N
-        jPanel26.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel21.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 180, 180));
-
-        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel27.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel71.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel71.setText("1800s/");
-        jPanel27.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amd6.png"))); // NOI18N
-        jLabel47.setText("jLabel47");
-        jPanel27.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel21.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 180, 180));
-
-        jLabel32.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel32.setText("Tarjeta Grafica Powercolor Red ");
-        jPanel21.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 280, 30));
-
-        jLabel50.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel50.setText(" Devil Amd Radeon Rx 6600 Xt");
-        jPanel21.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 260, 30));
-
-        jLabel51.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel51.setText("Tarjeta Grafica Gigabyte Amd ");
-        jPanel21.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 260, 30));
-
-        jLabel52.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel52.setText("Tarjeta Gráfica Xfx Thicciii Ultra");
-        jPanel21.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 290, 30));
-
-        jLabel53.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel53.setText("Tarjeta Grafica Powercolor Fighter ");
-        jPanel21.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 310, 30));
-
-        jLabel54.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel54.setText("Targeta Graficas Amd Sapphire ");
-        jPanel21.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 270, 30));
-
-        jLabel55.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel55.setText("Tarjeta Grafica Sapphire ");
-        jPanel21.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 230, 30));
-
-        jLabel56.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel56.setText(" PulseAmd Radeon Rx 6600");
-        jPanel21.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 240, 30));
-
-        jLabel57.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel57.setText("Radeon Rx 6600 Eagle 8gb Gddr6");
-        jPanel21.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 290, 30));
-
-        jLabel58.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel58.setText(" Amdradeon Rx 5700 Xt 8gb");
-        jPanel21.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 250, 30));
-
-        jLabel59.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel59.setText("Amd Radeon Rx 6600 8gb");
-        jPanel21.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 240, 30));
-
-        jLabel60.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel60.setText("Nitro Radeon 6700 12gb Video");
-        jPanel21.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 270, 30));
-
-        jTabbedPane1.addTab("tab3", jPanel21);
-
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel28.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel28.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel160.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel160.setText("1419s/");
-        jPanel28.add(jLabel160, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/p1.jpg"))); // NOI18N
-        jPanel28.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 180, 180));
-
-        jPanel13.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 180, 180));
-
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel159.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel159.setText("1119S/");
-        jPanel29.add(jLabel159, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/p2.jpg"))); // NOI18N
-        jPanel29.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel13.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 180, 180));
-
-        jPanel30.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel157.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel157.setText("1789S/");
-        jPanel30.add(jLabel157, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/p3.jpg"))); // NOI18N
-        jPanel30.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel13.add(jPanel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 180, 180));
-
-        jPanel32.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel32.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel158.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel158.setText("1909s/");
-        jPanel32.add(jLabel158, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/p4.jpg"))); // NOI18N
-        jPanel32.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel13.add(jPanel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 180, 180));
-
-        jPanel33.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel33.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel161.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel161.setText("2539S/");
-        jPanel33.add(jLabel161, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/p5.jpg"))); // NOI18N
-        jPanel33.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel13.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 180, 180));
-
-        jPanel34.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel162.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel162.setText("1189S/");
-        jPanel34.add(jLabel162, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/p6.jpg"))); // NOI18N
-        jPanel34.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel13.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, 180, 180));
-
-        jLabel133.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel133.setText("CORE I5-12600K");
-        jPanel13.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 150, 30));
-
-        jLabel134.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel134.setText("PROCESADOR INTEL CORE I5");
-        jPanel13.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 250, 30));
-
-        jLabel135.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel135.setText("-13700 2.10GHZ-30MB");
-        jPanel13.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 200, 30));
-
-        jLabel136.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel136.setText("PROCESADOR INTEL ");
-        jPanel13.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 170, 30));
-
-        jLabel137.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel137.setText("-13400 2.5GHZ-20MB");
-        jPanel13.add(jLabel137, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 200, 30));
-
-        jLabel138.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel138.setText("PROCESADOR INTEL CORE I7");
-        jPanel13.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 250, 30));
-
-        jLabel139.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel139.setText("-13700F 2.1GHZ-30MB");
-        jPanel13.add(jLabel139, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 200, 30));
-
-        jLabel140.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel140.setText("10700 BX8070110700 2.9GHZ");
-        jPanel13.add(jLabel140, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 280, 30));
-
-        jLabel141.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel141.setText("PROCESADOR INTEL CORE I7");
-        jPanel13.add(jLabel141, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 250, 30));
-
-        jLabel142.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel142.setText("PROCESADOR INTEL CORE I9 ");
-        jPanel13.add(jLabel142, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 250, 30));
-
-        jLabel143.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel143.setText("12900K 3.20GHZ - 30MB");
-        jPanel13.add(jLabel143, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 220, 30));
-
-        jLabel144.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel144.setText("PROCESADOR INTEL CORE I7 ");
-        jPanel13.add(jLabel144, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 250, 30));
-
-        jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setText("SIGUIENTE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        txtBuscar.setBackground(new java.awt.Color(204, 204, 204));
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                txtBuscarActionPerformed(evt);
             }
         });
-        jPanel13.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 400, -1, 50));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
+        pnlPestañaP1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 330, -1));
 
-        jTabbedPane1.addTab("tab4", jPanel13);
+        jTabbedPane1.addTab("Productos 1", pnlPestañaP1);
 
-        jPanel31.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel31.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel35.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel35.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.add(imProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
-        jLabel163.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel163.setText("1539S/");
-        jPanel35.add(jLabel163, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP2.add(lblProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
-        jLabel79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/r1.jpg"))); // NOI18N
-        jPanel35.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.add(imProducto8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
-        jPanel31.add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 180, 180));
+        lblProducto8.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP2.add(lblProducto8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
-        jPanel36.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel36.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.add(imProducto9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
-        jLabel164.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel164.setText("1619s/");
-        jPanel36.add(jLabel164, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto9.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP2.add(lblProducto9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
-        jLabel80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/r2.jpg"))); // NOI18N
-        jPanel36.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.add(imProducto10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
-        jPanel31.add(jPanel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 180, 180));
+        lblProducto10.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP2.add(lblProducto10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
-        jPanel37.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel37.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.add(imProducto11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
-        jLabel165.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel165.setText("1589S/");
-        jPanel37.add(jLabel165, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto11.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP2.add(lblProducto11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
-        jLabel81.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/r3.jpg"))); // NOI18N
-        jPanel37.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP2.add(imProducto12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
-        jPanel31.add(jPanel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 180, 180));
+        lblProducto12.setBackground(new java.awt.Color(51, 51, 51));
+        lblProducto12.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP2.add(lblProducto12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
-        jPanel38.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel38.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel166.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel166.setText("2059S/");
-        jPanel38.add(jLabel166, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/r4.jpg"))); // NOI18N
-        jPanel38.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel31.add(jPanel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 180, 180));
-
-        jPanel39.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel167.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel167.setText("2159S/");
-        jPanel39.add(jLabel167, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/r5.jpg"))); // NOI18N
-        jPanel39.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel31.add(jPanel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 180, 180));
-
-        jPanel40.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel40.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel168.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel168.setText("2749S/");
-        jPanel40.add(jLabel168, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel84.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Procesadores/r6.jpg"))); // NOI18N
-        jPanel40.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel31.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 180, 180));
-
-        jLabel145.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel145.setText(" 7600X 4.7GHZ - 32MB");
-        jPanel31.add(jLabel145, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 200, 30));
-
-        jLabel146.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel146.setText("7700X 4.5GHZ - 32MB");
-        jPanel31.add(jLabel146, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 210, 30));
-
-        jLabel147.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel147.setText("PROCESADOR AMD RYZEN 5");
-        jPanel31.add(jLabel147, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 230, 30));
-
-        jLabel148.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel148.setText("PROCESADOR AMD RYZEN 7");
-        jPanel31.add(jLabel148, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 230, 30));
-
-        jLabel149.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel149.setText(" 7700 3.8GHZ - 32MB");
-        jPanel31.add(jLabel149, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 200, 30));
-
-        jLabel150.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel150.setText("7900X 4.7GHZ - 64MB");
-        jPanel31.add(jLabel150, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 200, 30));
-
-        jLabel151.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel151.setText("PROCESADOR AMD RYZEN 7 ");
-        jPanel31.add(jLabel151, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 250, 30));
-
-        jLabel152.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel152.setText("7950X 4.5GHZ - 64MB");
-        jPanel31.add(jLabel152, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, 200, 30));
-
-        jLabel153.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel153.setText("PROCESADOR AMD RYZEN 9 ");
-        jPanel31.add(jLabel153, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 250, 30));
-
-        jLabel154.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel154.setText("PROCESADOR AMD RYZEN 9 ");
-        jPanel31.add(jLabel154, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 240, 30));
-
-        jLabel155.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel155.setText("PROCESADOR AMD RYZEN 9 ");
-        jPanel31.add(jLabel155, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 240, 30));
-
-        jLabel156.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel156.setText("7900 3.7GHZ - 64MB");
-        jPanel31.add(jLabel156, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 190, 30));
-
-        jTabbedPane1.addTab("tab5", jPanel31);
-
-        jPanel41.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel41.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel42.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel42.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel188.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel188.setText("369S/");
-        jPanel42.add(jLabel188, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel85.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m1.jpg"))); // NOI18N
-        jPanel42.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel41.add(jPanel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 180, 180));
-
-        jPanel43.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel43.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel189.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel189.setText("389S/");
-        jPanel43.add(jLabel189, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 60, 20));
-
-        jLabel86.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m2.jpg"))); // NOI18N
-        jPanel43.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel41.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 180));
-
-        jPanel44.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel44.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel185.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel185.setText("419S/");
-        jPanel44.add(jLabel185, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel87.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m3.jpg"))); // NOI18N
-        jPanel44.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel41.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 180, 180));
-
-        jPanel45.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel45.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel186.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel186.setText("419S/");
-        jPanel45.add(jLabel186, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m4.jpg"))); // NOI18N
-        jPanel45.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel41.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 180, 180));
-
-        jPanel46.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel187.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel187.setText("539S/");
-        jPanel46.add(jLabel187, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m5.jpg"))); // NOI18N
-        jPanel46.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel41.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 180, 180));
-
-        jPanel47.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel47.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel184.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel184.setText("539S/");
-        jPanel47.add(jLabel184, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel90.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/m6.jpg"))); // NOI18N
-        jPanel47.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 180, 180));
-
-        jPanel41.add(jPanel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 180, 180));
-
-        jLabel169.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel169.setText("MOUSE LOGITECH G PRO X SUPERLIGHT");
-        jPanel41.add(jLabel169, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 340, 30));
-
-        jLabel170.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel170.setText("MOUSE LOGITECH G502 X PLUS WHITE");
-        jPanel41.add(jLabel170, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 320, 30));
-
-        jLabel171.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel171.setText("MOUSE LOGITECH G903 ");
-        jPanel41.add(jLabel171, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 220, 30));
-
-        jLabel172.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel172.setText(" WHITE WIRELESS LIGHTSPEED");
-        jPanel41.add(jLabel172, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 280, 260, 30));
-
-        jLabel173.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel173.setText("SUPERLIGHT WIRELESS LIGHTSPEED");
-        jPanel41.add(jLabel173, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 240, 30));
-
-        jLabel174.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel174.setText("MOUSE LOGITECH G502 X PLUS");
-        jPanel41.add(jLabel174, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, 30));
-
-        jLabel175.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel175.setText("MOUSE LOGITECH G PRO LOL");
-        jPanel41.add(jLabel175, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 250, 30));
-
-        jLabel176.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel176.setText("HERO LIGHTSPEED GAMING");
-        jPanel41.add(jLabel176, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 230, 30));
-
-        jLabel177.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel177.setText("MOUSE LOGITECH G PRO X ");
-        jPanel41.add(jLabel177, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 190, 30));
-
-        jButton4.setBackground(new java.awt.Color(255, 153, 51));
-        jButton4.setText("SIGUIENTE");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente2.setBackground(new java.awt.Color(255, 153, 0));
+        btnSiguiente2.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnSiguiente2.setText("SIGUIENTE");
+        btnSiguiente2.setBorder(null);
+        btnSiguiente2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSiguiente2ActionPerformed(evt);
             }
         });
-        jPanel41.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 390, -1, 50));
+        pnlPestañaP2.add(btnSiguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
 
-        jTabbedPane1.addTab("tab6", jPanel41);
+        jTabbedPane1.addTab("Productos 2", pnlPestañaP2);
 
-        jPanel48.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel48.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel49.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel49.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.add(imProducto13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
-        jLabel190.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel190.setText("129S/");
-        jPanel49.add(jLabel190, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto13.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP3.add(lblProducto13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
-        jLabel97.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/mo1_1.jpg"))); // NOI18N
-        jPanel49.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.add(imProducto14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
-        jPanel48.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 180, 180));
+        lblProducto14.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP3.add(lblProducto14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
-        jPanel50.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel50.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.add(imProducto15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
-        jLabel191.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel191.setText("139S/");
-        jPanel50.add(jLabel191, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto15.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP3.add(lblProducto15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
-        jLabel92.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/mo2.jpg"))); // NOI18N
-        jPanel50.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.add(imProducto16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
-        jPanel48.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 180));
+        lblProducto16.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP3.add(lblProducto16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
-        jPanel51.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel51.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.add(imProducto17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
-        jLabel192.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel192.setText("149S/");
-        jPanel51.add(jLabel192, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto17.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP3.add(lblProducto17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
-        jLabel93.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/mo3.jpg"))); // NOI18N
-        jPanel51.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP3.add(imProducto18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
-        jPanel48.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 180, 180));
+        lblProducto18.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP3.add(lblProducto18, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
-        jPanel52.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel52.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel193.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel193.setText("155S/");
-        jPanel52.add(jLabel193, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel94.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/mo4.jpg"))); // NOI18N
-        jPanel52.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel48.add(jPanel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 180, 180));
-
-        jPanel53.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel53.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel194.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel194.setText("169S/");
-        jPanel53.add(jLabel194, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel95.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/mo5.jpg"))); // NOI18N
-        jPanel53.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel48.add(jPanel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 180, 180));
-
-        jPanel54.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel54.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel195.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel195.setText("169S/");
-        jPanel54.add(jLabel195, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel96.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mouse/mo6.jpg"))); // NOI18N
-        jPanel54.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel48.add(jPanel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 180, 180));
-
-        jLabel178.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel178.setText("MOUSE REDRAGON STORM PRO WIRELESS");
-        jPanel48.add(jLabel178, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, -1, 30));
-
-        jLabel179.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel179.setText("MOUSE REDRAGON STORM ELITE WHITE");
-        jPanel48.add(jLabel179, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 280, 30));
-
-        jLabel180.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel180.setText("MOUSE REDRAGON STORM PRO WHITE");
-        jPanel48.add(jLabel180, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 480, 250, 30));
-
-        jLabel181.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel181.setText("MOUSE REDRAGON IMPACT M908");
-        jPanel48.add(jLabel181, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 220, 30));
-
-        jLabel182.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel182.setText("MOUSE REDRAGON COBRA M711 FPS");
-        jPanel48.add(jLabel182, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 250, 30));
-
-        jLabel183.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel183.setText("MOUSE REDRAGON STORM ELITE");
-        jPanel48.add(jLabel183, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 230, 30));
-
-        jTabbedPane1.addTab("tab7", jPanel48);
-
-        jPanel55.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel55.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel56.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel56.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel214.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel214.setText("749S/");
-        jPanel56.add(jLabel214, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/ip1.jpg"))); // NOI18N
-        jPanel56.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel55.add(jPanel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 180, 180));
-
-        jPanel57.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel57.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel215.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel215.setText("799S/");
-        jPanel57.add(jLabel215, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/ip2.jpg"))); // NOI18N
-        jPanel57.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel55.add(jPanel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 180, 180));
-
-        jPanel58.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel58.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel216.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel216.setText("1119S/");
-        jPanel58.add(jLabel216, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel99.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/ip3.jpg"))); // NOI18N
-        jLabel99.setText("jLabel99");
-        jPanel58.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel55.add(jPanel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 180, 180));
-
-        jPanel59.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel59.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel217.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel217.setText("2500S/");
-        jPanel59.add(jLabel217, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/ip4.png"))); // NOI18N
-        jPanel59.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel55.add(jPanel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 180, 180));
-
-        jPanel60.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel60.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel218.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel218.setText("999S/");
-        jPanel60.add(jLabel218, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/ip5.jpg"))); // NOI18N
-        jPanel60.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel55.add(jPanel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 180, 180));
-
-        jPanel61.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel61.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel219.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel219.setText("1559S/");
-        jPanel61.add(jLabel219, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel102.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/ip6.jpg"))); // NOI18N
-        jLabel102.setToolTipText("");
-        jPanel61.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel55.add(jPanel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 180, 180));
-
-        jLabel196.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel196.setText("IMPRESORA MULTIFUNCIONAL EPSON ");
-        jPanel55.add(jLabel196, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 250, 30));
-
-        jLabel197.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel197.setText("IMPRESORA MULTIFUNCIONAL EPSON");
-        jPanel55.add(jLabel197, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 250, 30));
-
-        jLabel198.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel198.setText(" ECOTANK");
-        jPanel55.add(jLabel198, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 90, 30));
-
-        jLabel199.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel199.setText("IMPRESORA EPSON L5590 ECOTANK");
-        jPanel55.add(jLabel199, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 250, 30));
-
-        jLabel200.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel200.setText("IMPRESORA EPSON L15150 ");
-        jPanel55.add(jLabel200, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 190, 30));
-
-        jLabel201.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel201.setText("IMPRESORA MULTIFUNCIONAL");
-        jPanel55.add(jLabel201, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 220, 30));
-
-        jLabel208.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel208.setText("ECOTANK L6270 ETHERNET WIFI DUPLEX ADF");
-        jPanel55.add(jLabel208, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 490, 320, 30));
-
-        jLabel209.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel209.setText("MPRESORA EPSON M1120");
-        jPanel55.add(jLabel209, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 180, 30));
-
-        jLabel210.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel210.setText(" MONOCROMATICA WIFI");
-        jPanel55.add(jLabel210, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 170, 30));
-
-        jLabel211.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel211.setText(" WIFI ETHERNET");
-        jPanel55.add(jLabel211, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 120, 30));
-
-        jLabel212.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel212.setText("A3+ WIFI ETHETNET MULTIFUNCIONAL");
-        jPanel55.add(jLabel212, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 260, 30));
-
-        jLabel213.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel213.setText(" EPSON L3260 SISTEMA CONTINUO");
-        jPanel55.add(jLabel213, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 500, 240, 30));
-
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("SIGUIENTE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente3.setBackground(new java.awt.Color(255, 153, 0));
+        btnSiguiente3.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnSiguiente3.setText("SIGUIENTE");
+        btnSiguiente3.setBorder(null);
+        btnSiguiente3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSiguiente3ActionPerformed(evt);
             }
         });
-        jPanel55.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 410, -1, 50));
+        pnlPestañaP3.add(btnSiguiente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
 
-        jTabbedPane1.addTab("tab8", jPanel55);
+        jTabbedPane1.addTab("Productos 3", pnlPestañaP3);
 
-        jPanel62.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel62.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel63.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel63.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.add(imProducto19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
-        jLabel220.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel220.setText("626S/");
-        jPanel63.add(jLabel220, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto19.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP4.add(lblProducto19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
-        jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/np1.jpg"))); // NOI18N
-        jPanel63.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.add(imProducto20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
-        jPanel62.add(jPanel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 180, 180));
+        lblProducto20.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP4.add(lblProducto20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
-        jPanel64.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel64.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.add(imProducto21, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
-        jLabel221.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel221.setText("619S/");
-        jPanel64.add(jLabel221, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto21.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP4.add(lblProducto21, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
-        jLabel104.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/np2.jpg"))); // NOI18N
-        jPanel64.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 180, 180));
+        imProducto22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.add(imProducto22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
-        jPanel62.add(jPanel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 180, 180));
+        lblProducto22.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP4.add(lblProducto22, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
-        jPanel65.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel65.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.add(imProducto23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
-        jLabel222.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel222.setText("639S/");
-        jPanel65.add(jLabel222, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto23.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP4.add(lblProducto23, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
-        jLabel105.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/np3.jpg"))); // NOI18N
-        jPanel65.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto24.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP4.add(imProducto24, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
-        jPanel62.add(jPanel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 180, 180));
+        lblProducto24.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP4.add(lblProducto24, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
-        jPanel66.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel66.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel106.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/np4.jpg"))); // NOI18N
-        jPanel66.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 180, 170));
-
-        jPanel62.add(jPanel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 180, 130));
-
-        jPanel67.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel67.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel224.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel224.setText("879S/");
-        jPanel67.add(jLabel224, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel107.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/np5.jpg"))); // NOI18N
-        jPanel67.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel62.add(jPanel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 180, 180));
-
-        jPanel68.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel68.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel225.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel225.setText("679S/");
-        jPanel68.add(jLabel225, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel108.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresoras/np6.jpg"))); // NOI18N
-        jPanel68.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel62.add(jPanel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 180, 180));
-
-        jLabel202.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel202.setText("IMPRESORA  HP SMART TANK 515");
-        jPanel62.add(jLabel202, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 460, 220, 30));
-
-        jLabel203.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel203.setText("IMPRESORA CANON PIXMA");
-        jPanel62.add(jLabel203, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 180, 30));
-
-        jLabel204.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel204.setText("IMPRESORA HP 415");
-        jPanel62.add(jLabel204, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 140, 30));
-
-        jLabel205.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel205.setText("IMPRESORA CANON  G3110");
-        jPanel62.add(jLabel205, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 180, 30));
-
-        jLabel206.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel206.setText("IMPRESORA BROTHER DCP-");
-        jPanel62.add(jLabel206, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 180, 30));
-
-        jLabel207.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel207.setText("IMPRESORA CANON PIXMA G6010");
-        jPanel62.add(jLabel207, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 220, 30));
-
-        jLabel223.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel223.setText("699S/");
-        jPanel62.add(jLabel223, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 70, 40));
-
-        jTabbedPane1.addTab("tab9", jPanel62);
-
-        jPanel69.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel69.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel70.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel70.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel238.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel238.setText("569S/");
-        jPanel70.add(jLabel238, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel109.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/a1.jpg"))); // NOI18N
-        jPanel70.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel69.add(jPanel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 180, 180));
-
-        jPanel71.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel71.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel239.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel239.setText("579S/");
-        jPanel71.add(jLabel239, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel110.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/a2.jpg"))); // NOI18N
-        jPanel71.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 180));
-
-        jPanel69.add(jPanel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 180, 180));
-
-        jPanel72.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel72.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel240.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel240.setText("626S/");
-        jPanel72.add(jLabel240, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel111.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/a3.jpg"))); // NOI18N
-        jPanel72.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 180));
-
-        jPanel69.add(jPanel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 180, 180));
-
-        jPanel73.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel73.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel241.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel241.setText("859S/");
-        jPanel73.add(jLabel241, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel112.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/a4.jpg"))); // NOI18N
-        jPanel73.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel69.add(jPanel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 180, 180));
-
-        jPanel74.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel74.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel242.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel242.setText("409S/");
-        jPanel74.add(jLabel242, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel113.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/a5.jpg"))); // NOI18N
-        jPanel74.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel69.add(jPanel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 180, 180));
-
-        jPanel75.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel75.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel243.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel243.setText("439S/");
-        jPanel75.add(jLabel243, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel114.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/a6.jpg"))); // NOI18N
-        jPanel75.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel69.add(jPanel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 180, 180));
-
-        jLabel226.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel226.setText(" LOGITECH G PRO X LOL");
-        jPanel69.add(jLabel226, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, 180, 30));
-
-        jLabel227.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel227.setText(" LOGITECH G733 LIGHTSPEED");
-        jPanel69.add(jLabel227, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, 30));
-
-        jLabel228.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel228.setText("LOGITECH G733 K/DA");
-        jPanel69.add(jLabel228, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 160, 30));
-
-        jLabel229.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel229.setText("LOGITECH G733 LIGHTSPEED LILA");
-        jPanel69.add(jLabel229, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 30));
-
-        jLabel230.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel230.setText("GAMER LOGITECH G735 WIRELESS");
-        jPanel69.add(jLabel230, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 230, 30));
-
-        jLabel231.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel231.setText("LOGITECH G635");
-        jPanel69.add(jLabel231, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 130, 30));
-
-        jButton5.setBackground(new java.awt.Color(255, 153, 51));
-        jButton5.setText("SIGUIENTE");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente4.setBackground(new java.awt.Color(255, 153, 0));
+        btnSiguiente4.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnSiguiente4.setText("SIGUIENTE");
+        btnSiguiente4.setBorder(null);
+        btnSiguiente4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSiguiente4ActionPerformed(evt);
             }
         });
-        jPanel69.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 360, -1, 70));
+        pnlPestañaP4.add(btnSiguiente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
 
-        jTabbedPane1.addTab("tab10", jPanel69);
+        jTabbedPane1.addTab("Productos 4", pnlPestañaP4);
 
-        jPanel76.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel76.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel77.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel77.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto25.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.add(imProducto25, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
-        jLabel244.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel244.setText("129S/");
-        jPanel77.add(jLabel244, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto25.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP5.add(lblProducto25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
-        jLabel115.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel115.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/ar1.jpg"))); // NOI18N
-        jPanel77.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.add(imProducto26, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
-        jPanel76.add(jPanel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 180, 180));
+        lblProducto26.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP5.add(lblProducto26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
-        jPanel78.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel78.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto27.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.add(imProducto27, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
-        jLabel245.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel245.setText("139S/");
-        jPanel78.add(jLabel245, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto27.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP5.add(lblProducto27, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
-        jLabel116.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel116.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/ar2.jpg"))); // NOI18N
-        jPanel78.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto28.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.add(imProducto28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
-        jPanel76.add(jPanel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 180, 180));
+        lblProducto28.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP5.add(lblProducto28, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
-        jPanel79.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel79.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto29.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.add(imProducto29, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
-        jLabel246.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel246.setText("149S/");
-        jPanel79.add(jLabel246, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto29.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP5.add(lblProducto29, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
-        jLabel117.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel117.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/ar3.jpg"))); // NOI18N
-        jPanel79.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto30.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP5.add(imProducto30, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
-        jPanel76.add(jPanel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 180, 180));
+        lblProducto30.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP5.add(lblProducto30, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
-        jPanel80.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel80.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel247.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel247.setText("155S/");
-        jPanel80.add(jLabel247, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel118.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel118.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/ar4.jpg"))); // NOI18N
-        jPanel80.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel76.add(jPanel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 180, 180));
-
-        jPanel81.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel81.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel248.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel248.setText("169S/");
-        jPanel81.add(jLabel248, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel119.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel119.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/ar5.jpg"))); // NOI18N
-        jPanel81.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel76.add(jPanel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 180, 180));
-
-        jPanel82.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel82.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel249.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel249.setText("169S/");
-        jPanel82.add(jLabel249, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel120.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel120.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/audifonos/ar6.jpg"))); // NOI18N
-        jPanel82.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel76.add(jPanel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 180, 180));
-
-        jLabel232.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel232.setText("GAMING RAZER BARRACUDA TH QUARTZ");
-        jPanel76.add(jLabel232, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 280, 30));
-
-        jLabel233.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel233.setText("RAZER BARRACUDA WIRELESS ");
-        jPanel76.add(jLabel233, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 210, 30));
-
-        jLabel234.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel234.setText("RAZER BLACKSHARK");
-        jPanel76.add(jLabel234, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 150, 30));
-
-        jLabel235.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel235.setText("RAZER BARRACUDA PRO WIRELESS");
-        jPanel76.add(jLabel235, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 240, 30));
-
-        jLabel236.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel236.setText(" RAZER KRAKEN KITTY EDITION");
-        jPanel76.add(jLabel236, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 210, 30));
-
-        jLabel237.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel237.setText("GAMER RAZER BARRACUDA WHITE");
-        jPanel76.add(jLabel237, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 240, 30));
-
-        jTabbedPane1.addTab("tab11", jPanel76);
-
-        jPanel83.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel83.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel84.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel84.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel262.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel262.setText("409S/");
-        jPanel84.add(jLabel262, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel121.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/t1.jpg"))); // NOI18N
-        jPanel84.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel83.add(jPanel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 180, 180));
-
-        jPanel85.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel85.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel263.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel263.setText("439S/");
-        jPanel85.add(jLabel263, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel122.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/t2.jpg"))); // NOI18N
-        jPanel85.add(jLabel122, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel83.add(jPanel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 180, 180));
-
-        jPanel86.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel86.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel264.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel264.setText("799S/");
-        jPanel86.add(jLabel264, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel123.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/t3.jpg"))); // NOI18N
-        jPanel86.add(jLabel123, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel83.add(jPanel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 180, 180));
-
-        jPanel87.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel87.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel265.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel265.setText("799S/");
-        jPanel87.add(jLabel265, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel124.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/t4.jpg"))); // NOI18N
-        jPanel87.add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel83.add(jPanel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 180, 180));
-
-        jPanel88.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel88.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel266.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel266.setText("739S/");
-        jPanel88.add(jLabel266, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel125.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/t5.jpg"))); // NOI18N
-        jPanel88.add(jLabel125, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel83.add(jPanel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 180, 180));
-
-        jPanel89.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel89.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel267.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel267.setText("389S/");
-        jPanel89.add(jLabel267, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
-
-        jLabel126.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/t6.jpg"))); // NOI18N
-        jPanel89.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
-        jPanel83.add(jPanel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 180, 180));
-
-        jLabel250.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel250.setText("LOGITECH PRO RGB");
-        jPanel83.add(jLabel250, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 210, 30));
-
-        jLabel251.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel251.setText("LOGITECH PRO KEYBOARD");
-        jPanel83.add(jLabel251, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 30));
-
-        jLabel252.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel252.setText("GAMER LOGITECH G413 ");
-        jPanel83.add(jLabel252, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 170, 30));
-
-        jLabel253.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel253.setText("GAMER LOGITECH G915 TKL");
-        jPanel83.add(jLabel253, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 190, 30));
-
-        jLabel254.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel254.setText("LOGITECH G915 TKL");
-        jPanel83.add(jLabel254, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 150, 30));
-
-        jLabel255.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel255.setText("LOGITECH G715 TKL");
-        jPanel83.add(jLabel255, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 210, 30));
-
-        jButton7.setBackground(new java.awt.Color(255, 153, 51));
-        jButton7.setText("SIGUIENTE");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente5.setBackground(new java.awt.Color(255, 153, 0));
+        btnSiguiente5.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnSiguiente5.setText("SIGUIENTE");
+        btnSiguiente5.setBorder(null);
+        btnSiguiente5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnSiguiente5ActionPerformed(evt);
             }
         });
-        jPanel83.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 370, -1, 70));
+        pnlPestañaP5.add(btnSiguiente5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
 
-        jTabbedPane1.addTab("tab12", jPanel83);
+        jTabbedPane1.addTab("Productos 5", pnlPestañaP5);
 
-        jPanel90.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel90.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel91.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel91.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto31.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.add(imProducto31, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
-        jLabel268.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel268.setText("339S/");
-        jPanel91.add(jLabel268, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto31.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP6.add(lblProducto31, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
-        jLabel127.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te1.jpg"))); // NOI18N
-        jPanel91.add(jLabel127, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 180));
+        imProducto32.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.add(imProducto32, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
-        jPanel90.add(jPanel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 180, 180));
+        lblProducto32.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP6.add(lblProducto32, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
-        jPanel92.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel92.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto33.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.add(imProducto33, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
-        jLabel269.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel269.setText("329S/");
-        jPanel92.add(jLabel269, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto33.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP6.add(lblProducto33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
-        jLabel128.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te2.jpg"))); // NOI18N
-        jPanel92.add(jLabel128, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.add(imProducto34, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
-        jPanel90.add(jPanel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 180, 180));
+        lblProducto34.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP6.add(lblProducto34, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
-        jPanel93.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel93.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imProducto35.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.add(imProducto35, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
-        jLabel270.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel270.setText("259S/");
-        jPanel93.add(jLabel270, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        lblProducto35.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP6.add(lblProducto35, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
-        jLabel129.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te3.jpg"))); // NOI18N
-        jPanel93.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        imProducto36.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP6.add(imProducto36, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
-        jPanel90.add(jPanel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 180, 180));
+        lblProducto36.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP6.add(lblProducto36, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
-        jPanel94.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel94.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnSiguiente6.setBackground(new java.awt.Color(255, 153, 0));
+        btnSiguiente6.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnSiguiente6.setText("SIGUIENTE");
+        btnSiguiente6.setBorder(null);
+        btnSiguiente6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguiente6ActionPerformed(evt);
+            }
+        });
+        pnlPestañaP6.add(btnSiguiente6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
 
-        jLabel271.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel271.setText("259S/");
-        jPanel94.add(jLabel271, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        jTabbedPane1.addTab("Productos 6", pnlPestañaP6);
 
-        jLabel130.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te4.jpg"))); // NOI18N
-        jPanel94.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        pnlPestañaP7.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPestañaP7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel90.add(jPanel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 180, 180));
+        imProducto37.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP7.add(imProducto37, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 180, 180));
 
-        jPanel95.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel95.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblProducto37.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP7.add(lblProducto37, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 30));
 
-        jLabel272.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel272.setText("249S/");
-        jPanel95.add(jLabel272, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        imProducto38.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP7.add(imProducto38, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 180, 180));
 
-        jLabel131.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te5.jpg"))); // NOI18N
-        jPanel95.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+        lblProducto38.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP7.add(lblProducto38, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 220, 30));
 
-        jPanel90.add(jPanel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 180, 180));
+        imProducto39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP7.add(imProducto39, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 180, 180));
 
-        jPanel96.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel96.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblProducto39.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP7.add(lblProducto39, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 260, 30));
 
-        jLabel273.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel273.setText("239S/");
-        jPanel96.add(jLabel273, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 60, 20));
+        imProducto40.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP7.add(imProducto40, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 180, 180));
 
-        jLabel132.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teclado/te6.jpg"))); // NOI18N
-        jPanel96.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 180));
+        lblProducto40.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP7.add(lblProducto40, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 240, 30));
 
-        jPanel90.add(jPanel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 240, 180));
+        imProducto41.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP7.add(imProducto41, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 180));
 
-        jLabel256.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel256.setText("REDRAGON HORUS TKL WHITE");
-        jPanel90.add(jLabel256, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 220, 30));
+        lblProducto41.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP7.add(lblProducto41, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
 
-        jLabel257.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel257.setText("REDRAGON YAMA WHITE");
-        jPanel90.add(jLabel257, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 180, 30));
+        imProducto42.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlPestañaP7.add(imProducto42, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 180, 180));
 
-        jLabel258.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel258.setText("REDRAGON HORUS FS WHITE");
-        jPanel90.add(jLabel258, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 200, 30));
+        lblProducto42.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblProducto42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlPestañaP7.add(lblProducto42, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 260, 30));
 
-        jLabel259.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel259.setText("REDRAGON DEIMOS");
-        jPanel90.add(jLabel259, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 140, 30));
-
-        jLabel260.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel260.setText("REDRAGON DRACONIC WHITE");
-        jPanel90.add(jLabel260, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 200, 30));
-
-        jLabel261.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel261.setText("MECANICO REDRAGON SHRAPNEL");
-        jPanel90.add(jLabel261, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 220, 30));
-
-        jTabbedPane1.addTab("tab13", jPanel90);
+        jTabbedPane1.addTab("Productos 7", pnlPestañaP7);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 990, 580));
         jTabbedPane1.getAccessibleContext().setAccessibleName("tab3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void llenarMatriz(){
+        paneles [0] = imProducto1;
+        paneles [1] = imProducto2;
+        paneles [2] = imProducto3;
+        paneles [3] = imProducto4;
+        paneles [4] = imProducto5;
+        paneles [5] = imProducto6;
+        paneles [6] = imProducto7;
+        paneles [7] = imProducto8;
+        paneles [8] = imProducto9;
+        paneles [9] = imProducto10;
+        paneles [10] = imProducto11;
+        paneles [11] = imProducto12;
+        paneles [12] = imProducto13;
+        paneles [13] = imProducto7;
+        paneles [14] = imProducto9;
+        paneles [15] = imProducto10;
+        paneles [16] = imProducto11;
+        paneles [17] = imProducto12;
+        paneles [18] = imProducto19;
+        paneles [19] = imProducto20;
+        paneles [20] = imProducto21;
+        paneles [21] = imProducto22;
+        paneles [22] = imProducto23;
+        paneles [23] = imProducto24;
+        paneles [24] = imProducto25;
+        paneles [25] = imProducto26;
+        paneles [26] = imProducto27;
+        paneles [27] = imProducto28;
+        paneles [28] = imProducto29;
+        paneles [29] = imProducto30;
+        paneles [30] = imProducto31;
+        paneles [31] = imProducto32;
+        paneles [32] = imProducto33;
+        paneles [33] = imProducto34;
+        paneles [34] = imProducto35;
+        paneles [35] = imProducto36;
+        paneles [36] = imProducto37;
+        paneles [37] = imProducto38;
+        paneles [38] = imProducto39;
+        paneles [39] = imProducto40;
+        paneles [40] = imProducto41;
+        paneles [41] = imProducto42;
+        labels [0] = lblProducto1;
+        labels [1] = lblProducto2;
+        labels [2] = lblProducto3;
+        labels [3] = lblProducto4;
+        labels [4] = lblProducto5;
+        labels [5] = lblProducto6;
+        labels [6] = lblProducto7;
+        labels [7] = lblProducto8;
+        labels [8] = lblProducto9;
+        labels [9] = lblProducto10;
+        labels [10] = lblProducto11;
+        labels [11] = lblProducto12;
+        labels [12] = lblProducto13;
+        labels [13] = lblProducto14;
+        labels [14] = lblProducto15;
+        labels [15] = lblProducto16;
+        labels [16] = lblProducto17;
+        labels [17] = lblProducto18;
+        labels [18] = lblProducto19;
+        labels [19] = lblProducto20;
+        labels [20] = lblProducto21;
+        labels [21] = lblProducto22;
+        labels [22] = lblProducto23;
+        labels [23] = lblProducto24;
+        labels [24] = lblProducto25;
+        labels [25] = lblProducto26;
+        labels [26] = lblProducto27;
+        labels [27] = lblProducto28;
+        labels [28] = lblProducto29;
+        labels [29] = lblProducto30;
+        labels [30] = lblProducto31;
+        labels [31] = lblProducto32;
+        labels [32] = lblProducto33;
+        labels [33] = lblProducto34;
+        labels [34] = lblProducto35;
+        labels [35] = lblProducto36;
+        labels [36] = lblProducto37;
+        labels [37] = lblProducto38;
+        labels [38] = lblProducto39;
+        labels [39] = lblProducto40;
+        labels [40] = lblProducto41;
+        labels [41] = lblProducto42;
+    }
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
             System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel10MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        jTabbedPane1.setSelectedIndex(0);        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-               // jTabbedPane1.setSelectedIndex(1);        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel3MouseClicked
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        jTabbedPane1.setSelectedIndex(3);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-                 // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel4MouseClicked
-
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        jTabbedPane1.setSelectedIndex(5);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel13MouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
-    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-            jTabbedPane1.setSelectedIndex(5);         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel5MouseClicked
+    private void btnSiguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente2ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(3); 
+    }//GEN-LAST:event_btnSiguiente2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            jTabbedPane1.setSelectedIndex(4);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-            jTabbedPane1.setSelectedIndex(6);    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente1ActionPerformed
+        jTabbedPane1.setSelectedIndex(2);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSiguiente1ActionPerformed
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-            jTabbedPane1.setSelectedIndex(7);        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel15MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            jTabbedPane1.setSelectedIndex(8);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
-             jTabbedPane1.setSelectedIndex(9);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel16MouseClicked
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            jTabbedPane1.setSelectedIndex(10);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-            jTabbedPane1.setSelectedIndex(11);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel17MouseClicked
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-            jTabbedPane1.setSelectedIndex(12);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void pnlProcesadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProcesadoresMouseClicked
+        // TODO add your handling code here:
+        tipo = lblProcesador.getText();
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
+        jTabbedPane1.setSelectedIndex(1);      
+    }//GEN-LAST:event_pnlProcesadoresMouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        jTabbedPane1.setSelectedIndex(1);        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void btnSiguiente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente3ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(4); 
+    }//GEN-LAST:event_btnSiguiente3ActionPerformed
+
+    private void btnSiguiente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente4ActionPerformed
+        jTabbedPane1.setSelectedIndex(5);
+    }//GEN-LAST:event_btnSiguiente4ActionPerformed
+
+    private void btnSiguiente5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente5ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(6); 
+    }//GEN-LAST:event_btnSiguiente5ActionPerformed
+
+    private void btnSiguiente6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente6ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(7); 
+    }//GEN-LAST:event_btnSiguiente6ActionPerformed
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void pnlTarjetasGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTarjetasGMouseClicked
+        // TODO add your handling code here:
+        tipo = lblTarjetaG.getText();
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
+        jTabbedPane1.setSelectedIndex(1);
+        
+    }//GEN-LAST:event_pnlTarjetasGMouseClicked
+
+    private void pnlImpresorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlImpresorasMouseClicked
+        // TODO add your handling code here:
+        tipo = lblImpresora.getText();
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_pnlImpresorasMouseClicked
+
+    private void pnlMousesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMousesMouseClicked
+        // TODO add your handling code here:
+        tipo = lblMouse.getText();
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_pnlMousesMouseClicked
+
+    private void pnlAuricularesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlAuricularesMouseClicked
+        // TODO add your handling code here:
+        tipo = lblAuricular.getText();
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_pnlAuricularesMouseClicked
+
+    private void pnlTecladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTecladosMouseClicked
+        // TODO add your handling code here:
+        tipo = lblTeclados.getText();
+        try {
+            SeleccionP(art,tipo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
+        }
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_pnlTecladosMouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+
+ Carrito obj = new Carrito();
+     obj.setVisible(true);
+      this.setVisible(false);
+      this.setResizable(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+       Carrito obj = new Carrito();
+      obj.setVisible(true);
+      this.setVisible(false);
+      this.setResizable(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        // TODO add your handling code here:
+        String termino;
+        termino = txtBuscar.getText();
+        BusquedaP(art,termino);
+        
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
     /**
      * @param args the command line arguments
@@ -2123,401 +1162,155 @@ public class Catalogo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Catalogo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Catalogo().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnSiguiente1;
+    private javax.swing.JButton btnSiguiente2;
+    private javax.swing.JButton btnSiguiente3;
+    private javax.swing.JButton btnSiguiente4;
+    private javax.swing.JButton btnSiguiente5;
+    private javax.swing.JButton btnSiguiente6;
+    private org.edisoncor.gui.panel.PanelImage imProducto1;
+    private org.edisoncor.gui.panel.PanelImage imProducto10;
+    private org.edisoncor.gui.panel.PanelImage imProducto11;
+    private org.edisoncor.gui.panel.PanelImage imProducto12;
+    private org.edisoncor.gui.panel.PanelImage imProducto13;
+    private org.edisoncor.gui.panel.PanelImage imProducto14;
+    private org.edisoncor.gui.panel.PanelImage imProducto15;
+    private org.edisoncor.gui.panel.PanelImage imProducto16;
+    private org.edisoncor.gui.panel.PanelImage imProducto17;
+    private org.edisoncor.gui.panel.PanelImage imProducto18;
+    private org.edisoncor.gui.panel.PanelImage imProducto19;
+    private org.edisoncor.gui.panel.PanelImage imProducto2;
+    private org.edisoncor.gui.panel.PanelImage imProducto20;
+    private org.edisoncor.gui.panel.PanelImage imProducto21;
+    private org.edisoncor.gui.panel.PanelImage imProducto22;
+    private org.edisoncor.gui.panel.PanelImage imProducto23;
+    private org.edisoncor.gui.panel.PanelImage imProducto24;
+    private org.edisoncor.gui.panel.PanelImage imProducto25;
+    private org.edisoncor.gui.panel.PanelImage imProducto26;
+    private org.edisoncor.gui.panel.PanelImage imProducto27;
+    private org.edisoncor.gui.panel.PanelImage imProducto28;
+    private org.edisoncor.gui.panel.PanelImage imProducto29;
+    private org.edisoncor.gui.panel.PanelImage imProducto3;
+    private org.edisoncor.gui.panel.PanelImage imProducto30;
+    private org.edisoncor.gui.panel.PanelImage imProducto31;
+    private org.edisoncor.gui.panel.PanelImage imProducto32;
+    private org.edisoncor.gui.panel.PanelImage imProducto33;
+    private org.edisoncor.gui.panel.PanelImage imProducto34;
+    private org.edisoncor.gui.panel.PanelImage imProducto35;
+    private org.edisoncor.gui.panel.PanelImage imProducto36;
+    private org.edisoncor.gui.panel.PanelImage imProducto37;
+    private org.edisoncor.gui.panel.PanelImage imProducto38;
+    private org.edisoncor.gui.panel.PanelImage imProducto39;
+    private org.edisoncor.gui.panel.PanelImage imProducto4;
+    private org.edisoncor.gui.panel.PanelImage imProducto40;
+    private org.edisoncor.gui.panel.PanelImage imProducto41;
+    private org.edisoncor.gui.panel.PanelImage imProducto42;
+    private org.edisoncor.gui.panel.PanelImage imProducto5;
+    private org.edisoncor.gui.panel.PanelImage imProducto6;
+    private org.edisoncor.gui.panel.PanelImage imProducto7;
+    private org.edisoncor.gui.panel.PanelImage imProducto8;
+    private org.edisoncor.gui.panel.PanelImage imProducto9;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
-    private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
-    private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel127;
-    private javax.swing.JLabel jLabel128;
-    private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel130;
-    private javax.swing.JLabel jLabel131;
-    private javax.swing.JLabel jLabel132;
-    private javax.swing.JLabel jLabel133;
-    private javax.swing.JLabel jLabel134;
-    private javax.swing.JLabel jLabel135;
-    private javax.swing.JLabel jLabel136;
-    private javax.swing.JLabel jLabel137;
-    private javax.swing.JLabel jLabel138;
-    private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel140;
-    private javax.swing.JLabel jLabel141;
-    private javax.swing.JLabel jLabel142;
-    private javax.swing.JLabel jLabel143;
-    private javax.swing.JLabel jLabel144;
-    private javax.swing.JLabel jLabel145;
-    private javax.swing.JLabel jLabel146;
-    private javax.swing.JLabel jLabel147;
-    private javax.swing.JLabel jLabel148;
-    private javax.swing.JLabel jLabel149;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel150;
-    private javax.swing.JLabel jLabel151;
-    private javax.swing.JLabel jLabel152;
-    private javax.swing.JLabel jLabel153;
-    private javax.swing.JLabel jLabel154;
-    private javax.swing.JLabel jLabel155;
-    private javax.swing.JLabel jLabel156;
-    private javax.swing.JLabel jLabel157;
-    private javax.swing.JLabel jLabel158;
-    private javax.swing.JLabel jLabel159;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel160;
-    private javax.swing.JLabel jLabel161;
-    private javax.swing.JLabel jLabel162;
-    private javax.swing.JLabel jLabel163;
-    private javax.swing.JLabel jLabel164;
-    private javax.swing.JLabel jLabel165;
-    private javax.swing.JLabel jLabel166;
-    private javax.swing.JLabel jLabel167;
-    private javax.swing.JLabel jLabel168;
-    private javax.swing.JLabel jLabel169;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel170;
-    private javax.swing.JLabel jLabel171;
-    private javax.swing.JLabel jLabel172;
-    private javax.swing.JLabel jLabel173;
-    private javax.swing.JLabel jLabel174;
-    private javax.swing.JLabel jLabel175;
-    private javax.swing.JLabel jLabel176;
-    private javax.swing.JLabel jLabel177;
-    private javax.swing.JLabel jLabel178;
-    private javax.swing.JLabel jLabel179;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel180;
-    private javax.swing.JLabel jLabel181;
-    private javax.swing.JLabel jLabel182;
-    private javax.swing.JLabel jLabel183;
-    private javax.swing.JLabel jLabel184;
-    private javax.swing.JLabel jLabel185;
-    private javax.swing.JLabel jLabel186;
-    private javax.swing.JLabel jLabel187;
-    private javax.swing.JLabel jLabel188;
-    private javax.swing.JLabel jLabel189;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel190;
-    private javax.swing.JLabel jLabel191;
-    private javax.swing.JLabel jLabel192;
-    private javax.swing.JLabel jLabel193;
-    private javax.swing.JLabel jLabel194;
-    private javax.swing.JLabel jLabel195;
-    private javax.swing.JLabel jLabel196;
-    private javax.swing.JLabel jLabel197;
-    private javax.swing.JLabel jLabel198;
-    private javax.swing.JLabel jLabel199;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel200;
-    private javax.swing.JLabel jLabel201;
-    private javax.swing.JLabel jLabel202;
-    private javax.swing.JLabel jLabel203;
-    private javax.swing.JLabel jLabel204;
-    private javax.swing.JLabel jLabel205;
-    private javax.swing.JLabel jLabel206;
-    private javax.swing.JLabel jLabel207;
-    private javax.swing.JLabel jLabel208;
-    private javax.swing.JLabel jLabel209;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel210;
-    private javax.swing.JLabel jLabel211;
-    private javax.swing.JLabel jLabel212;
-    private javax.swing.JLabel jLabel213;
-    private javax.swing.JLabel jLabel214;
-    private javax.swing.JLabel jLabel215;
-    private javax.swing.JLabel jLabel216;
-    private javax.swing.JLabel jLabel217;
-    private javax.swing.JLabel jLabel218;
-    private javax.swing.JLabel jLabel219;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel220;
-    private javax.swing.JLabel jLabel221;
-    private javax.swing.JLabel jLabel222;
-    private javax.swing.JLabel jLabel223;
-    private javax.swing.JLabel jLabel224;
-    private javax.swing.JLabel jLabel225;
-    private javax.swing.JLabel jLabel226;
-    private javax.swing.JLabel jLabel227;
-    private javax.swing.JLabel jLabel228;
-    private javax.swing.JLabel jLabel229;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel230;
-    private javax.swing.JLabel jLabel231;
-    private javax.swing.JLabel jLabel232;
-    private javax.swing.JLabel jLabel233;
-    private javax.swing.JLabel jLabel234;
-    private javax.swing.JLabel jLabel235;
-    private javax.swing.JLabel jLabel236;
-    private javax.swing.JLabel jLabel237;
-    private javax.swing.JLabel jLabel238;
-    private javax.swing.JLabel jLabel239;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel240;
-    private javax.swing.JLabel jLabel241;
-    private javax.swing.JLabel jLabel242;
-    private javax.swing.JLabel jLabel243;
-    private javax.swing.JLabel jLabel244;
-    private javax.swing.JLabel jLabel245;
-    private javax.swing.JLabel jLabel246;
-    private javax.swing.JLabel jLabel247;
-    private javax.swing.JLabel jLabel248;
-    private javax.swing.JLabel jLabel249;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel250;
-    private javax.swing.JLabel jLabel251;
-    private javax.swing.JLabel jLabel252;
-    private javax.swing.JLabel jLabel253;
-    private javax.swing.JLabel jLabel254;
-    private javax.swing.JLabel jLabel255;
-    private javax.swing.JLabel jLabel256;
-    private javax.swing.JLabel jLabel257;
-    private javax.swing.JLabel jLabel258;
-    private javax.swing.JLabel jLabel259;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel260;
-    private javax.swing.JLabel jLabel261;
-    private javax.swing.JLabel jLabel262;
-    private javax.swing.JLabel jLabel263;
-    private javax.swing.JLabel jLabel264;
-    private javax.swing.JLabel jLabel265;
-    private javax.swing.JLabel jLabel266;
-    private javax.swing.JLabel jLabel267;
-    private javax.swing.JLabel jLabel268;
-    private javax.swing.JLabel jLabel269;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel270;
-    private javax.swing.JLabel jLabel271;
-    private javax.swing.JLabel jLabel272;
-    private javax.swing.JLabel jLabel273;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
-    private javax.swing.JPanel jPanel49;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel50;
-    private javax.swing.JPanel jPanel51;
-    private javax.swing.JPanel jPanel52;
-    private javax.swing.JPanel jPanel53;
-    private javax.swing.JPanel jPanel54;
-    private javax.swing.JPanel jPanel55;
-    private javax.swing.JPanel jPanel56;
-    private javax.swing.JPanel jPanel57;
-    private javax.swing.JPanel jPanel58;
-    private javax.swing.JPanel jPanel59;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel60;
-    private javax.swing.JPanel jPanel61;
-    private javax.swing.JPanel jPanel62;
-    private javax.swing.JPanel jPanel63;
-    private javax.swing.JPanel jPanel64;
-    private javax.swing.JPanel jPanel65;
-    private javax.swing.JPanel jPanel66;
-    private javax.swing.JPanel jPanel67;
-    private javax.swing.JPanel jPanel68;
-    private javax.swing.JPanel jPanel69;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel70;
-    private javax.swing.JPanel jPanel71;
-    private javax.swing.JPanel jPanel72;
-    private javax.swing.JPanel jPanel73;
-    private javax.swing.JPanel jPanel74;
-    private javax.swing.JPanel jPanel75;
-    private javax.swing.JPanel jPanel76;
-    private javax.swing.JPanel jPanel77;
-    private javax.swing.JPanel jPanel78;
-    private javax.swing.JPanel jPanel79;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel80;
-    private javax.swing.JPanel jPanel81;
-    private javax.swing.JPanel jPanel82;
-    private javax.swing.JPanel jPanel83;
-    private javax.swing.JPanel jPanel84;
-    private javax.swing.JPanel jPanel85;
-    private javax.swing.JPanel jPanel86;
-    private javax.swing.JPanel jPanel87;
-    private javax.swing.JPanel jPanel88;
-    private javax.swing.JPanel jPanel89;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPanel jPanel90;
-    private javax.swing.JPanel jPanel91;
-    private javax.swing.JPanel jPanel92;
-    private javax.swing.JPanel jPanel93;
-    private javax.swing.JPanel jPanel94;
-    private javax.swing.JPanel jPanel95;
-    private javax.swing.JPanel jPanel96;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblAuricular;
+    private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblImpresora;
+    private javax.swing.JLabel lblMouse;
+    private javax.swing.JLabel lblName;
+    public javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblProcesador;
+    private javax.swing.JLabel lblProducto1;
+    private javax.swing.JLabel lblProducto10;
+    private javax.swing.JLabel lblProducto11;
+    private javax.swing.JLabel lblProducto12;
+    private javax.swing.JLabel lblProducto13;
+    private javax.swing.JLabel lblProducto14;
+    private javax.swing.JLabel lblProducto15;
+    private javax.swing.JLabel lblProducto16;
+    private javax.swing.JLabel lblProducto17;
+    private javax.swing.JLabel lblProducto18;
+    private javax.swing.JLabel lblProducto19;
+    private javax.swing.JLabel lblProducto2;
+    private javax.swing.JLabel lblProducto20;
+    private javax.swing.JLabel lblProducto21;
+    private javax.swing.JLabel lblProducto22;
+    private javax.swing.JLabel lblProducto23;
+    private javax.swing.JLabel lblProducto24;
+    private javax.swing.JLabel lblProducto25;
+    private javax.swing.JLabel lblProducto26;
+    private javax.swing.JLabel lblProducto27;
+    private javax.swing.JLabel lblProducto28;
+    private javax.swing.JLabel lblProducto29;
+    private javax.swing.JLabel lblProducto3;
+    private javax.swing.JLabel lblProducto30;
+    private javax.swing.JLabel lblProducto31;
+    private javax.swing.JLabel lblProducto32;
+    private javax.swing.JLabel lblProducto33;
+    private javax.swing.JLabel lblProducto34;
+    private javax.swing.JLabel lblProducto35;
+    private javax.swing.JLabel lblProducto36;
+    private javax.swing.JLabel lblProducto37;
+    private javax.swing.JLabel lblProducto38;
+    private javax.swing.JLabel lblProducto39;
+    private javax.swing.JLabel lblProducto4;
+    private javax.swing.JLabel lblProducto40;
+    private javax.swing.JLabel lblProducto41;
+    private javax.swing.JLabel lblProducto42;
+    private javax.swing.JLabel lblProducto5;
+    private javax.swing.JLabel lblProducto6;
+    private javax.swing.JLabel lblProducto7;
+    private javax.swing.JLabel lblProducto8;
+    private javax.swing.JLabel lblProducto9;
+    private javax.swing.JLabel lblTarjetaG;
+    private javax.swing.JLabel lblTeclados;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
+    private javax.swing.JPanel pnlAuriculares;
+    private javax.swing.JPanel pnlCategorias;
+    private javax.swing.JPanel pnlImpresoras;
+    private javax.swing.JPanel pnlMouses;
+    private javax.swing.JPanel pnlPestañaP1;
+    private javax.swing.JPanel pnlPestañaP2;
+    private javax.swing.JPanel pnlPestañaP3;
+    private javax.swing.JPanel pnlPestañaP4;
+    private javax.swing.JPanel pnlPestañaP5;
+    private javax.swing.JPanel pnlPestañaP6;
+    private javax.swing.JPanel pnlPestañaP7;
+    private javax.swing.JPanel pnlProcesadores;
+    private javax.swing.JPanel pnlTarjetasG;
+    private javax.swing.JPanel pnlTeclados;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
