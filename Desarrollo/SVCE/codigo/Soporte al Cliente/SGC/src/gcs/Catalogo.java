@@ -4,6 +4,8 @@ import Clases.Producto;
 import Clases.Usuario;
 import bdMYSQL.SqlProductos;
 import java.awt.Color;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -143,6 +145,7 @@ public class Catalogo extends javax.swing.JFrame {
         imgImpresora = new javax.swing.JLabel();
         imgAuriculares = new javax.swing.JLabel();
         imgTeclado = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         pnlPestañaP1 = new javax.swing.JPanel();
         imProducto1 = new org.edisoncor.gui.panel.PanelImage();
         lblProducto1 = new javax.swing.JLabel();
@@ -374,47 +377,40 @@ public class Catalogo extends javax.swing.JFrame {
 
         lblTeclados.setBackground(new java.awt.Color(0, 0, 0));
         lblTeclados.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblTeclados.setForeground(new java.awt.Color(0, 0, 0));
         lblTeclados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTeclados.setText("TECLADOS");
         pnlCategorias.add(lblTeclados, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 120, 30));
 
         lblTarjetaG.setBackground(new java.awt.Color(0, 0, 0));
         lblTarjetaG.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblTarjetaG.setForeground(new java.awt.Color(0, 0, 0));
         lblTarjetaG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTarjetaG.setText("TARJETAS GRÁFICAS");
         pnlCategorias.add(lblTarjetaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 180, 30));
 
         lblProcesador.setBackground(new java.awt.Color(0, 0, 0));
         lblProcesador.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblProcesador.setForeground(new java.awt.Color(0, 0, 0));
         lblProcesador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblProcesador.setText("PROCESADORES");
         pnlCategorias.add(lblProcesador, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 140, 30));
 
         lblMouse.setBackground(new java.awt.Color(0, 0, 0));
         lblMouse.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblMouse.setForeground(new java.awt.Color(0, 0, 0));
         lblMouse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMouse.setText("MOUSE");
         pnlCategorias.add(lblMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 120, 30));
 
         lblImpresora.setBackground(new java.awt.Color(0, 0, 0));
         lblImpresora.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblImpresora.setForeground(new java.awt.Color(0, 0, 0));
         lblImpresora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImpresora.setText("IMPRESORAS");
         pnlCategorias.add(lblImpresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 120, 30));
 
         lblAuricular.setBackground(new java.awt.Color(0, 0, 0));
         lblAuricular.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        lblAuricular.setForeground(new java.awt.Color(0, 0, 0));
         lblAuricular.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAuricular.setText("AURICULARES");
         pnlCategorias.add(lblAuricular, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 140, 30));
 
-        imgTarjeta.setForeground(new java.awt.Color(0, 0, 0));
         imgTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asus.jpg"))); // NOI18N
         imgTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -423,7 +419,6 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(imgTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 180, -1));
 
-        imgProcesadores.setForeground(new java.awt.Color(0, 0, 0));
         imgProcesadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/intel-core-i5165172.jpg"))); // NOI18N
         imgProcesadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -433,7 +428,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlCategorias.add(imgProcesadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 180, 190));
 
         imgMouse.setBackground(new java.awt.Color(255, 255, 255));
-        imgMouse.setForeground(new java.awt.Color(0, 0, 0));
         imgMouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m3.jpg"))); // NOI18N
         imgMouse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -442,7 +436,6 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(imgMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 140, -1));
 
-        imgImpresora.setForeground(new java.awt.Color(0, 0, 0));
         imgImpresora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora-epson-ecotank-l3210-multifuncional-pnc11cj68303-.jpg"))); // NOI18N
         imgImpresora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -451,7 +444,6 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(imgImpresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 180, -1));
 
-        imgAuriculares.setForeground(new java.awt.Color(0, 0, 0));
         imgAuriculares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/auriculares.jpg"))); // NOI18N
         imgAuriculares.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -461,7 +453,6 @@ public class Catalogo extends javax.swing.JFrame {
         pnlCategorias.add(imgAuriculares, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, -1));
 
         imgTeclado.setBackground(new java.awt.Color(255, 255, 255));
-        imgTeclado.setForeground(new java.awt.Color(0, 0, 0));
         imgTeclado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/te4.jpg"))); // NOI18N
         imgTeclado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -469,6 +460,16 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         pnlCategorias.add(imgTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, 160, 160));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/whatsapp.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlCategorias.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 460, -1, -1));
 
         cambPaneles.addTab("Categorias", pnlCategorias);
 
@@ -790,6 +791,23 @@ public class Catalogo extends javax.swing.JFrame {
         pnlSalir.setBackground(new Color(255,153,0));
     }//GEN-LAST:event_pnlSalirMouseExited
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if(java.awt.Desktop.isDesktopSupported()){
+           java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+           if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+               try{
+                   java.net.URI uri = new java.net.URI("");
+                   desktop.browse(uri);
+                   
+               }catch(URISyntaxException | IOException ex){
+           } 
+           }
+        
+       }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -834,6 +852,7 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JLabel imgProcesadores;
     private javax.swing.JLabel imgTarjeta;
     private javax.swing.JLabel imgTeclado;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel4;
