@@ -146,6 +146,7 @@ public class Catalogo extends javax.swing.JFrame {
         imgAuriculares = new javax.swing.JLabel();
         imgTeclado = new javax.swing.JLabel();
         btnWhatsApp = new javax.swing.JButton();
+        btnWhatsApp1 = new javax.swing.JButton();
         pnlPestañaP1 = new javax.swing.JPanel();
         imProducto1 = new org.edisoncor.gui.panel.PanelImage();
         lblProducto1 = new javax.swing.JLabel();
@@ -461,7 +462,7 @@ public class Catalogo extends javax.swing.JFrame {
         });
         pnlCategorias.add(imgTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, 160, 160));
 
-        btnWhatsApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/whatsapp.png"))); // NOI18N
+        btnWhatsApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mensajero.png"))); // NOI18N
         btnWhatsApp.setBorderPainted(false);
         btnWhatsApp.setContentAreaFilled(false);
         btnWhatsApp.addActionListener(new java.awt.event.ActionListener() {
@@ -469,7 +470,17 @@ public class Catalogo extends javax.swing.JFrame {
                 btnWhatsAppActionPerformed(evt);
             }
         });
-        pnlCategorias.add(btnWhatsApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 470, -1, -1));
+        pnlCategorias.add(btnWhatsApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 420, -1, -1));
+
+        btnWhatsApp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/whatsapp.png"))); // NOI18N
+        btnWhatsApp1.setBorderPainted(false);
+        btnWhatsApp1.setContentAreaFilled(false);
+        btnWhatsApp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWhatsApp1ActionPerformed(evt);
+            }
+        });
+        pnlCategorias.add(btnWhatsApp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 470, -1, -1));
 
         cambPaneles.addTab("Categorias", pnlCategorias);
 
@@ -796,7 +807,7 @@ public class Catalogo extends javax.swing.JFrame {
            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
                try{
-                   java.net.URI uri = new java.net.URI("https://wa.link/cixogp");
+                   java.net.URI uri = new java.net.URI("https://www.facebook.com/profile.php?id=100010820298216");
                    desktop.browse(uri);
                    
                }catch(URISyntaxException | IOException ex){
@@ -804,6 +815,10 @@ public class Catalogo extends javax.swing.JFrame {
            } 
        }     
     }//GEN-LAST:event_btnWhatsAppActionPerformed
+
+    private void btnWhatsApp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWhatsApp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWhatsApp1ActionPerformed
 
     
     
@@ -839,6 +854,7 @@ public class Catalogo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnWhatsApp;
+    private javax.swing.JButton btnWhatsApp1;
     private javax.swing.JTabbedPane cambPaneles;
     private org.edisoncor.gui.panel.PanelImage imProducto1;
     private org.edisoncor.gui.panel.PanelImage imProducto2;
