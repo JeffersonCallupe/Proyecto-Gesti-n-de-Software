@@ -38,7 +38,7 @@ public class ventanaAdmin extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-       // llenarTabla ();
+        llenarTabla ();
     }
 
     /**
@@ -746,7 +746,17 @@ public class ventanaAdmin extends javax.swing.JFrame {
         lblImage.setText("");
     }
     
-  
+    void llenarTabla (){
+        modelo = new DefaultTableModel();
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("PRODUCTO");
+        modelo.addColumn("MARCA");
+        modelo.addColumn("FECHA");
+        
+        obtenerDatosVentas();
+
+        tblXD.setModel(modelo);
+    }
 
         
         private void obtenerDatosVentas(){
