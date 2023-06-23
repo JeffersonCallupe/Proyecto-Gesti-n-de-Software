@@ -25,6 +25,18 @@ public class SqlCompra extends ConexionBD{
         try (PreparedStatement ps = con.prepareStatement(sql)){
             rs = ps.executeQuery();
             while (rs.next()){
+                Reporte articulo = new Reporte();
+                articulo.setFecha (rs.getInt(1));
+                articulo.setDescripcion (rs.getString(2)); 
+                articulo.setCantidad (rs.getInt(3));
+                articulo.setPrecio(rs.getDouble(4));
+                articulo.setIdUsuario(rs.getInt(5)); 
+                articulo.setIdPedido(rs.getInt(6));
+                articulo.setIdProducto(rs.getInt(7));
+                articulo.setIdDetalle(rs.getInt(8));
+                art.add(articulo);
+
+            }
             }
     }
 
