@@ -340,7 +340,12 @@ public class Carrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaComprasActionPerformed
- 
+      ListaDeCompras obj = new ListaDeCompras();
+      obj.setVisible(true);
+      obj.setFrame(this);
+      this.setVisible(false);
+      this.setResizable(false);
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_btnListaComprasActionPerformed
 
