@@ -13,6 +13,11 @@ public class Carrito extends javax.swing.JFrame {
         setResizable(false);
     }
 
+    public void setFrame (Catalogo origen){
+        this.frame = origen;
+        frame.setEnabled(false);
+    }
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -31,6 +36,17 @@ public class Carrito extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        lblImageVisa = new javax.swing.JLabel();
+        lblImageMaster = new javax.swing.JLabel();
+        lblImageBBVA = new javax.swing.JLabel();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        imgOh = new org.edisoncor.gui.panel.PanelImage();
+        panelImage2 = new org.edisoncor.gui.panel.PanelImage();
+        jRadioButton5 = new javax.swing.JRadioButton();
         btnListaCompras = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -135,6 +151,117 @@ public class Carrito extends javax.swing.JFrame {
         jLabel8.setText("Correo");
         jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        MetodosDePagos.add(jRadioButton1);
+        jRadioButton1.setText("VISA");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        MetodosDePagos.add(jRadioButton2);
+        jRadioButton2.setText("MasterCard");
+
+        MetodosDePagos.add(jRadioButton3);
+        jRadioButton3.setText("BBVA");
+
+        lblImageVisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/visa (1).png"))); // NOI18N
+
+        lblImageMaster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mastercard (1).png"))); // NOI18N
+
+        lblImageBBVA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bbvaa.png"))); // NOI18N
+
+        jRadioButton4.setText("Tarjeta Oh");
+
+        imgOh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Tarjeta_Oh.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout imgOhLayout = new javax.swing.GroupLayout(imgOh);
+        imgOh.setLayout(imgOhLayout);
+        imgOhLayout.setHorizontalGroup(
+            imgOhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+        );
+        imgOhLayout.setVerticalGroup(
+            imgOhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 58, Short.MAX_VALUE)
+        );
+
+        panelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/interbank.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout panelImage2Layout = new javax.swing.GroupLayout(panelImage2);
+        panelImage2.setLayout(panelImage2Layout);
+        panelImage2Layout.setHorizontalGroup(
+            panelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        panelImage2Layout.setVerticalGroup(
+            panelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
+        jRadioButton5.setText("Interbank");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImageVisa)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jRadioButton1)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImageMaster)
+                    .addComponent(jRadioButton2))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRadioButton3)
+                        .addGap(41, 41, 41)
+                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblImageBBVA, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(imgOh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(panelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jRadioButton2)
+                                .addComponent(jRadioButton3)
+                                .addComponent(jRadioButton4)
+                                .addComponent(jRadioButton5))
+                            .addComponent(jRadioButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblImageMaster)
+                            .addComponent(lblImageVisa)
+                            .addComponent(lblImageBBVA)
+                            .addComponent(imgOh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(panelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        jPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 150));
+
         btnListaCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bienes (1).png"))); // NOI18N
         btnListaCompras.setBorder(null);
         btnListaCompras.setBorderPainted(false);
@@ -190,10 +317,16 @@ public class Carrito extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnListaComprasActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    /**
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.ButtonGroup MetodosDePagos;
     private javax.swing.JButton btnListaCompras;
+    private org.edisoncor.gui.panel.PanelImage imgOh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -201,14 +334,24 @@ public class Carrito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel lblDatos;
+    private javax.swing.JLabel lblImageBBVA;
+    private javax.swing.JLabel lblImageMaster;
+    private javax.swing.JLabel lblImageVisa;
     private javax.swing.JLabel lblMetodos;
+    private org.edisoncor.gui.panel.PanelImage panelImage2;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlMetodos;
     private javax.swing.JTextField txtCorreo;
