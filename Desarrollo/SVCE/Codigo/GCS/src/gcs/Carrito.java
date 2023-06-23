@@ -36,6 +36,7 @@ public class Carrito extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        btnContinuar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -47,6 +48,7 @@ public class Carrito extends javax.swing.JFrame {
         imgOh = new org.edisoncor.gui.panel.PanelImage();
         panelImage2 = new org.edisoncor.gui.panel.PanelImage();
         jRadioButton5 = new javax.swing.JRadioButton();
+        btnVolver = new javax.swing.JButton();
         btnListaCompras = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -150,6 +152,18 @@ public class Carrito extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel8.setText("Correo");
         jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
+
+        btnContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FlechaContinuar.png"))); // NOI18N
+        btnContinuar.setText("Continuar");
+        btnContinuar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnContinuar.setBorderPainted(false);
+        btnContinuar.setContentAreaFilled(false);
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
+        jPanel.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 100, 30));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -262,6 +276,19 @@ public class Carrito extends javax.swing.JFrame {
 
         jPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 150));
 
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FlechaVolver.png"))); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnVolver.setBorderPainted(false);
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, 90, 30));
+
         btnListaCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bienes (1).png"))); // NOI18N
         btnListaCompras.setBorder(null);
         btnListaCompras.setBorderPainted(false);
@@ -313,7 +340,7 @@ public class Carrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaComprasActionPerformed
-
+   
 // TODO add your handling code here:
     }//GEN-LAST:event_btnListaComprasActionPerformed
 
@@ -321,11 +348,55 @@ public class Carrito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Carrito().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.ButtonGroup MetodosDePagos;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnListaCompras;
+    private javax.swing.JButton btnVolver;
     private org.edisoncor.gui.panel.PanelImage imgOh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
