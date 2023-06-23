@@ -4,11 +4,11 @@
  */
 package gcs;
 
-import database.SqlPedido;
+import bdMYSQL.SqlCompra;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import models.Pedidos;
+import Clases.Reporte;
 
 public class ReporteCompra extends javax.swing.JFrame {
     
@@ -17,17 +17,17 @@ public class ReporteCompra extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        llenarTablaPedidos();
+        llenarTablaReporte();
     }
 
-    public void llenarTablaPedidos(){
-        SqlPedido pedido = new SqlPedido();
-        List <Pedidos> compra= pedido.obtenerPedido();
+    public void llenarTablaReporte(){
+        SqlCompra pedido = new SqlCompra();
+        List <Reporte> reporte= pedido.obtenerPedido();
         DefaultTableModel modeloDefault = new DefaultTableModel(new String []{"Fecha","Producto", "Cantidad", "Precio unitario","Precio total"}, pedido.size());
-        tablaHistorial.setModel(modeloDefault);
-        TableModel modelDatos = tablaHistorial.getModel();
-        for (int i = 0; i < compra.size(); i++){
-            Pedidos art = compra.get(i);
+        tablaReporte.setModel(modeloDefault);
+        TableModel modelDatos = tablaReporte.getModel();
+        for (int i = 0; i < reporte.size(); i++){
+            Reporte art = reporte.get(i);
             modelDatos.setValueAt(art.getFecha(), i, 0);
             modelDatos.setValueAt(art.getDescripcion(), i, 1);
             modelDatos.setValueAt(art.getCantidad(), i, 2);
@@ -46,30 +46,24 @@ public class ReporteCompra extends javax.swing.JFrame {
 
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
         javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        tablaHistorial = new javax.swing.JTable();
+        tablaReporte = new javax.swing.JTable();
         javax.swing.JButton btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(238, 238, 238));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel1.setText("Historial de compras ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 280, 50));
-
-        jLabel2.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel2.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(74, 197, 238));
-        jLabel2.setText("Detalles");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Reporte de compra");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 280, 50));
 
         jSeparator1.setBackground(new java.awt.Color(51, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(74, 197, 238));
@@ -80,8 +74,8 @@ public class ReporteCompra extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)));
 
-        tablaHistorial.setForeground(new java.awt.Color(102, 102, 255));
-        tablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
+        tablaReporte.setForeground(new java.awt.Color(102, 102, 255));
+        tablaReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,23 +101,23 @@ public class ReporteCompra extends javax.swing.JFrame {
                 "Producto", "Cantidad", "Precio Unitario", "Precio Total"
             }
         ));
-        tablaHistorial.setAlignmentX(1.0F);
-        tablaHistorial.setAlignmentY(2.0F);
-        tablaHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaHistorial.setEnabled(false);
-        tablaHistorial.setGridColor(new java.awt.Color(153, 204, 255));
-        tablaHistorial.setRowHeight(40);
-        tablaHistorial.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tablaHistorial);
-        if (tablaHistorial.getColumnModel().getColumnCount() > 0) {
-            tablaHistorial.getColumnModel().getColumn(0).setResizable(false);
-            tablaHistorial.getColumnModel().getColumn(0).setPreferredWidth(250);
-            tablaHistorial.getColumnModel().getColumn(1).setResizable(false);
-            tablaHistorial.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tablaHistorial.getColumnModel().getColumn(2).setResizable(false);
-            tablaHistorial.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tablaHistorial.getColumnModel().getColumn(3).setResizable(false);
-            tablaHistorial.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tablaReporte.setAlignmentX(1.0F);
+        tablaReporte.setAlignmentY(2.0F);
+        tablaReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaReporte.setEnabled(false);
+        tablaReporte.setGridColor(new java.awt.Color(153, 204, 255));
+        tablaReporte.setRowHeight(40);
+        tablaReporte.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaReporte);
+        if (tablaReporte.getColumnModel().getColumnCount() > 0) {
+            tablaReporte.getColumnModel().getColumn(0).setResizable(false);
+            tablaReporte.getColumnModel().getColumn(0).setPreferredWidth(250);
+            tablaReporte.getColumnModel().getColumn(1).setResizable(false);
+            tablaReporte.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tablaReporte.getColumnModel().getColumn(2).setResizable(false);
+            tablaReporte.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tablaReporte.getColumnModel().getColumn(3).setResizable(false);
+            tablaReporte.getColumnModel().getColumn(3).setPreferredWidth(50);
         }
 
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FlechaVolver.png"))); // NOI18N
@@ -211,7 +205,7 @@ public class ReporteCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable tablaHistorial;
+    private javax.swing.JTable tablaReporte;
     // End of variables declaration//GEN-END:variables
 
   
