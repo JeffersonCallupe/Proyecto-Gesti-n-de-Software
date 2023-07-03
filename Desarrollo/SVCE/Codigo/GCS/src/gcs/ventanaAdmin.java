@@ -904,7 +904,7 @@ public class ventanaAdmin extends javax.swing.JFrame {
         txtBuscar.addKeyListener(new KeyAdapter(){
             @Override
             public void keyReleased(KeyEvent ke){
-                trs.setRowFilter(RowFilter.regexFilter("(?i)"+txtBuscar.getText(),0));
+                trs.setRowFilter(RowFilter.regexFilter("(?i)"+txtBuscar.getText(),1));
             }
         });
         trs = new TableRowSorter(modelo);
