@@ -1,11 +1,12 @@
 package gcs;
 
+import Clases.ListaCarrito;
+import Clases.ListaProductos;
 import Clases.Producto;
-import Clases.Usuario;
 import bdMYSQL.SqlProductos;
 import java.awt.Color;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -14,31 +15,73 @@ import javax.swing.JOptionPane;
  * @author usuario
  */
 public class Catalogo extends javax.swing.JFrame {
-    ArrayList <Producto> art = new ArrayList<>(); 
     SqlProductos consultaP = new SqlProductos();
     org.edisoncor.gui.panel.PanelImage [] paneles = new  org.edisoncor.gui.panel.PanelImage [42];
     javax.swing.JLabel [] labels = new javax.swing.JLabel[42];
     Producto [] producto = new Producto [6];
-    Usuario usr;
     int posInicial = 0; 
     String tipo;
+    //Patron Singleton
+    private static Catalogo instance;
     
     public Catalogo(){
-        try {
-            initComponents();
-            llenarMatriz();
-            consultaP.ObtenerProducto(art);
-            setLocationRelativeTo(null);
-            setResizable(false);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexión con la base de datos\n" + ex,"Error de Catálogo", JOptionPane.ERROR_MESSAGE);
+        initComponents();
+        llenarMatriz();
+        consultaP.ObtenerProducto();
+        instance = this;
+        setLocationRelativeTo(null);
+        setResizable(false);
+        lblCantCarrito.setText("" + ListaCarrito.getSize());
+    }
+
+    public void actualizarCarrito (){
+        lblCantCarrito.setText("" + ListaCarrito.getSize());
+    }
+
+    public void buscador(boolean modo){
+        pnlLupa.setVisible(modo);
+        txtBuscar.setVisible(modo);
+    }
+    
+    public void setLbl (String nombre){
+        lblNombre.setText(nombre);
+    }
+    public static Catalogo getInstance() {
+        if (instance == null) {
+            instance = new Catalogo();
+        }
+        return instance;
+    }
+    
+    public void activarCarrito (){
+        Carrito carrito = new Carrito();
+        carrito.setSize(980, 570);
+        carrito.setLocation(0, 0);
+        pnlCarritoCompra.removeAll();
+        pnlCarritoCompra.add(carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,-1,-1));
+        pnlCarritoCompra.revalidate();
+        pnlCarrito.repaint();
+        cambPaneles.setSelectedIndex(2);
+        carrito.setFrame(this);
+    }
+    
+    public void setIndex (int i){
+        cambPaneles.setSelectedIndex(i);
+    }
+    
+    public void abrirCarrito(int ind){
+        if (producto[ind] != null){
+            AgregarCarrito agregar = new AgregarCarrito();
+            agregar.iniciarComponentes(producto[ind]);
+            if (producto[ind].getIdPromo()!= 0)
+                agregar.setPromocion();
+            agregar.setVisible(true);
+            agregar.setFrame(this);
+            agregar.toFront();
         }
     }
     
-    public void setUsuario(Usuario usr){
-        this.usr = usr;
-    }
-    public void SeleccionP (ArrayList <Producto> art, String prod) throws SQLException{
+    public void seleccionP (List <Producto> art, String prod){
         int posFinal = Math.min(posInicial + 6, art.size());
         int j = 0;
         limpiarCatalogo();
@@ -57,12 +100,14 @@ public class Catalogo extends javax.swing.JFrame {
         }
     }
     
-    public void BusquedaP (ArrayList <Producto> art, String termino){
+    public void busquedaP (List <Producto> art, String termino){
         int posFinal = Math.min(posInicial + 6, art.size());
         int j = 0;
+        boolean filtro;
         limpiarCatalogo();
         for (int i = posInicial; j < 6 && i < art.size(); i++) {
-            if (art.get(i).getDescripcion().toLowerCase().contains(termino.toLowerCase())){
+            filtro = art.get(i).getTipo().equals(tipo);
+            if (art.get(i).getDescripcion().toLowerCase().contains(termino.toLowerCase()) && filtro){
                 String image = art.get(i).getImage();
                 paneles[j].setIcon(new javax.swing.ImageIcon (getClass().getResource(image)));
                 paneles[j].repaint();
@@ -79,7 +124,6 @@ public class Catalogo extends javax.swing.JFrame {
     public void llenarCatalogo (ArrayList <Producto> art){
         int i = 0;
         for (Producto articulo : art) {
-            
             paneles[i].setIcon(new javax.swing.ImageIcon (getClass().getResource(articulo.getImage())));
             paneles[i].repaint();
             labels[i].setText(articulo.getDescripcion());
@@ -105,7 +149,7 @@ public class Catalogo extends javax.swing.JFrame {
 
         lblName = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        panelImage6 = new org.edisoncor.gui.panel.PanelImage();
+        pnlLupa = new org.edisoncor.gui.panel.PanelImage();
         jPanel1 = new javax.swing.JPanel();
         pnlCategoria = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
@@ -116,6 +160,8 @@ public class Catalogo extends javax.swing.JFrame {
         pnlCarrito = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         panelImage2 = new org.edisoncor.gui.panel.PanelImage();
+        images.PanelRound1 cantCarrito = new images.PanelRound1();
+        lblCantCarrito = new javax.swing.JLabel();
         pnlSalir = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         panelImage5 = new org.edisoncor.gui.panel.PanelImage();
@@ -157,13 +203,10 @@ public class Catalogo extends javax.swing.JFrame {
         imProducto5 = new org.edisoncor.gui.panel.PanelImage();
         lblProducto6 = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        pnlCarritoCompra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblName.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -172,20 +215,17 @@ public class Catalogo extends javax.swing.JFrame {
         getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 230, 40));
 
         txtBuscar.setBackground(new java.awt.Color(228, 228, 228));
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyTyped(evt);
             }
         });
+        txtBuscar.setVisible(false);
         getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, 330, 30));
 
-        panelImage6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
-        getContentPane().add(panelImage6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 50, 50));
+        pnlLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
+        pnlLupa.setVisible(false);
+        getContentPane().add(pnlLupa, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 50, 50));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,6 +303,20 @@ public class Catalogo extends javax.swing.JFrame {
         panelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carrito2.png"))); // NOI18N
         pnlCarrito.add(panelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 65, 65));
 
+        cantCarrito.setBackground(new java.awt.Color(234, 84, 85));
+        cantCarrito.setRoundBottomLeft(40);
+        cantCarrito.setRoundBottomRight(40);
+        cantCarrito.setRoundTopLeft(40);
+        cantCarrito.setRoundTopRight(40);
+        cantCarrito.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCantCarrito.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblCantCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        lblCantCarrito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantCarrito.add(lblCantCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
+
+        pnlCarrito.add(cantCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 25, 40, 40));
+
         jPanel1.add(pnlCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 300, 80));
 
         pnlSalir.setBackground(new java.awt.Color(255, 153, 0));
@@ -294,12 +348,12 @@ public class Catalogo extends javax.swing.JFrame {
         lblBienvenido.setForeground(new java.awt.Color(235, 235, 235));
         lblBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBienvenido.setText("BIENVENIDO");
-        jPanel1.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 120, 40));
+        jPanel1.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 120, 40));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(235, 235, 235));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, 40));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 220, 40));
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SOLOiconEmpresa.png"))); // NOI18N
         jPanel1.add(panelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 45, 65, 65));
@@ -383,7 +437,7 @@ public class Catalogo extends javax.swing.JFrame {
         lblTarjetaG.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lblTarjetaG.setForeground(new java.awt.Color(0, 0, 0));
         lblTarjetaG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTarjetaG.setText("XD");
+        lblTarjetaG.setText("TARJETAS GRAFICAS");
         pnlCategorias.add(lblTarjetaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 180, 30));
 
         lblProcesador.setBackground(new java.awt.Color(0, 0, 0));
@@ -416,58 +470,28 @@ public class Catalogo extends javax.swing.JFrame {
 
         imgTarjeta.setForeground(new java.awt.Color(0, 0, 0));
         imgTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asus.jpg"))); // NOI18N
-        imgTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgTarjetaMouseClicked(evt);
-            }
-        });
         pnlCategorias.add(imgTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 180, -1));
 
         imgProcesadores.setForeground(new java.awt.Color(0, 0, 0));
         imgProcesadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/intel-core-i5165172.jpg"))); // NOI18N
-        imgProcesadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgProcesadoresMouseClicked(evt);
-            }
-        });
         pnlCategorias.add(imgProcesadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 180, 190));
 
         imgMouse.setBackground(new java.awt.Color(255, 255, 255));
         imgMouse.setForeground(new java.awt.Color(0, 0, 0));
         imgMouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m3.jpg"))); // NOI18N
-        imgMouse.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgMouseMouseClicked(evt);
-            }
-        });
         pnlCategorias.add(imgMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 140, -1));
 
         imgImpresora.setForeground(new java.awt.Color(0, 0, 0));
         imgImpresora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora-epson-ecotank-l3210-multifuncional-pnc11cj68303-.jpg"))); // NOI18N
-        imgImpresora.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgImpresoraMouseClicked(evt);
-            }
-        });
         pnlCategorias.add(imgImpresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 180, -1));
 
         imgAuriculares.setForeground(new java.awt.Color(0, 0, 0));
         imgAuriculares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/auriculares.jpg"))); // NOI18N
-        imgAuriculares.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgAuricularesMouseClicked(evt);
-            }
-        });
         pnlCategorias.add(imgAuriculares, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 180, -1));
 
         imgTeclado.setBackground(new java.awt.Color(255, 255, 255));
         imgTeclado.setForeground(new java.awt.Color(0, 0, 0));
         imgTeclado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/te4.jpg"))); // NOI18N
-        imgTeclado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgTecladoMouseClicked(evt);
-            }
-        });
         pnlCategorias.add(imgTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, 160, 160));
 
         cambPaneles.addTab("Categorias", pnlCategorias);
@@ -481,12 +505,12 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         imProducto1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPestañaP1.add(imProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 180, 180));
+        pnlPestañaP1.add(imProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 180, 180));
 
         lblProducto1.setBackground(new java.awt.Color(255, 255, 255));
         lblProducto1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblProducto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPestañaP1.add(lblProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 240, 44));
+        pnlPestañaP1.add(lblProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 240, 44));
 
         imProducto2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -494,11 +518,11 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         imProducto2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPestañaP1.add(imProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 180, 180));
+        pnlPestañaP1.add(imProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 180, 180));
 
         lblProducto2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblProducto2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPestañaP1.add(lblProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 220, 44));
+        pnlPestañaP1.add(lblProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 220, 44));
 
         imProducto3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -506,11 +530,11 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         imProducto3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPestañaP1.add(imProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 180, 180));
+        pnlPestañaP1.add(imProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 180, 180));
 
         lblProducto3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblProducto3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPestañaP1.add(lblProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 260, 44));
+        pnlPestañaP1.add(lblProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, 260, 44));
 
         imProducto4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -518,11 +542,11 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         imProducto4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPestañaP1.add(imProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 180, 180));
+        pnlPestañaP1.add(imProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 180, 180));
 
         lblProducto4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblProducto4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPestañaP1.add(lblProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 240, 44));
+        pnlPestañaP1.add(lblProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 240, 44));
 
         imProducto6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -530,11 +554,11 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         imProducto6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPestañaP1.add(imProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 180, 180));
+        pnlPestañaP1.add(imProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, 180, 180));
 
         lblProducto5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblProducto5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPestañaP1.add(lblProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, 240, 44));
+        pnlPestañaP1.add(lblProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, 240, 44));
 
         imProducto5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -542,11 +566,11 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
         imProducto5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPestañaP1.add(imProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 180, 180));
+        pnlPestañaP1.add(imProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 180, 180));
 
         lblProducto6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblProducto6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPestañaP1.add(lblProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 260, 44));
+        pnlPestañaP1.add(lblProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 260, 44));
 
         btnSiguiente.setBackground(new java.awt.Color(255, 153, 0));
         btnSiguiente.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
@@ -557,9 +581,17 @@ public class Catalogo extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        pnlPestañaP1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 400, 70, 60));
+        pnlPestañaP1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 390, 70, 60));
+
+        btnAnterior.setBackground(new java.awt.Color(255, 153, 0));
+        btnAnterior.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAnterior.setText("ANTERIOR");
+        btnAnterior.setBorder(null);
+        btnAnterior.addActionListener(e -> btnAnteriorActionPerformed());
+        pnlPestañaP1.add(btnAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 70, 60));
 
         cambPaneles.addTab("Productos 1", pnlPestañaP1);
+        cambPaneles.addTab("tab3", pnlCarritoCompra);
 
         getContentPane().add(cambPaneles, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 990, 580));
         cambPaneles.getAccessibleContext().setAccessibleName("tab3");
@@ -585,155 +617,98 @@ public class Catalogo extends javax.swing.JFrame {
         return "<html><p>" + text + "</p></html>";
     }
     
+    private void filtrar(){
+        buscador(true);
+        seleccionP(ListaProductos.getDataList(),tipo);
+        cambPaneles.setSelectedIndex(1);
+    }
+    
     private void pnlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSalirMouseClicked
-            int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro de salir?");
-            if (resp == 0){
-                Login log = new Login();
-                log.setVisible(true);
-                this.setVisible(false);
-            }
+        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro de salir?");
+        if (resp == 0){
+            Login log = new Login();
+            log.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_pnlSalirMouseClicked
 
     private void pnlCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriaMouseClicked
         cambPaneles.setSelectedIndex(0);   
         btnSiguiente.setEnabled(true);
+        buscador(false);
         posInicial = 0;
         for (int i = 0; i < 6; i++)
             producto [i] = null;
     }//GEN-LAST:event_pnlCategoriaMouseClicked
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formMouseClicked
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        try {
-            SeleccionP(art, tipo);
-            posInicial +=6;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
+        posInicial +=6;
+        filtrar();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void imgImpresoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgImpresoraMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgImpresoraMouseClicked
-
-    private void imgMouseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMouseMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgMouseMouseClicked
-
-    private void imgProcesadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgProcesadoresMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgProcesadoresMouseClicked
-
+    private void btnAnteriorActionPerformed() {                                            
+        posInicial -=6;
+        if (posInicial < 0){
+            buscador(false);
+            cambPaneles.setSelectedIndex(0);
+            posInicial = 0;
+        }else{
+            btnAnterior.setEnabled(true);
+            filtrar();
+        }
+    }     
+    
     private void pnlProcesadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProcesadoresMouseClicked
         tipo = "Procesador";
-        try {
-            SeleccionP(art,tipo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
-        cambPaneles.setSelectedIndex(1);  
+        filtrar(); 
     }//GEN-LAST:event_pnlProcesadoresMouseClicked
-
-    private void imgTarjetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgTarjetaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgTarjetaMouseClicked
-
-    private void imgAuricularesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAuricularesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgAuricularesMouseClicked
-
-    private void imgTecladoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgTecladoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgTecladoMouseClicked
 
     private void pnlTarjetasGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTarjetasGMouseClicked
         tipo = "Tarjeta gráfica";
-        try {
-            SeleccionP(art,tipo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
-        cambPaneles.setSelectedIndex(1);
+        filtrar();
         
     }//GEN-LAST:event_pnlTarjetasGMouseClicked
 
     private void pnlImpresorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlImpresorasMouseClicked
         tipo = "Impresora";
-        try {
-            SeleccionP(art,tipo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
-        cambPaneles.setSelectedIndex(1);
+        filtrar();
     }//GEN-LAST:event_pnlImpresorasMouseClicked
 
     private void pnlMousesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMousesMouseClicked
         tipo = "Mouse";
-        try {
-            SeleccionP(art,tipo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
-        cambPaneles.setSelectedIndex(1);
+        filtrar();
     }//GEN-LAST:event_pnlMousesMouseClicked
 
     private void pnlAuricularesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlAuricularesMouseClicked
         tipo = "Auricular";
-        try {
-            SeleccionP(art,tipo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
-        cambPaneles.setSelectedIndex(1);
+        filtrar();
     }//GEN-LAST:event_pnlAuricularesMouseClicked
 
     private void pnlTecladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTecladosMouseClicked
         tipo = "Teclado";
-        try {
-            SeleccionP(art,tipo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los productos.");
-        }
-        cambPaneles.setSelectedIndex(1);
+        filtrar();
     }//GEN-LAST:event_pnlTecladosMouseClicked
     
     private void pnlCarritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCarritoMouseClicked
-        Carrito car = new Carrito();
-        car.setVisible(true);
-        this.setVisible(false);
-        car.setFrame (this);
+        pnlLupa.setVisible(false);
+        txtBuscar.setVisible(false);
+        activarCarrito();
     }//GEN-LAST:event_pnlCarritoMouseClicked
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         cambPaneles.setSelectedIndex(1); 
         String termino;
         termino = txtBuscar.getText();
-        BusquedaP(art,termino);
+        busquedaP(ListaProductos.getDataList(),termino);
         
     }//GEN-LAST:event_txtBuscarKeyTyped
     
     private void pnlMisComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMisComprasMouseClicked
-        // TODO add your handling code here:
+        Reporte rep = Reporte.getInstance();
+        rep.llenarTabla();
+        rep.setVisible(true);
     }//GEN-LAST:event_pnlMisComprasMouseClicked
-    
-    void abrirCarrito(int ind){
-        if (producto[ind] != null){
-            AgregarCarrito agregar = new AgregarCarrito();
-            agregar.iniciarComponentes(producto[ind]);
-            //agregar.setUsuario(usr);
-            agregar.setVisible(true);
-            agregar.setFrame(this);
-            agregar.toFront();
-        }
-    }
-    
+   
     private void imProducto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imProducto1MouseClicked
        abrirCarrito(0);
     }//GEN-LAST:event_imProducto1MouseClicked
@@ -820,6 +795,7 @@ public class Catalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JTabbedPane cambPaneles;
     private org.edisoncor.gui.panel.PanelImage imProducto1;
@@ -842,6 +818,7 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAuricular;
     private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblCantCarrito;
     private javax.swing.JLabel lblImpresora;
     private javax.swing.JLabel lblMouse;
     private javax.swing.JLabel lblName;
@@ -860,12 +837,13 @@ public class Catalogo extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelImage panelImage3;
     private org.edisoncor.gui.panel.PanelImage panelImage4;
     private org.edisoncor.gui.panel.PanelImage panelImage5;
-    private org.edisoncor.gui.panel.PanelImage panelImage6;
     private javax.swing.JPanel pnlAuriculares;
     private javax.swing.JPanel pnlCarrito;
+    private javax.swing.JPanel pnlCarritoCompra;
     private javax.swing.JPanel pnlCategoria;
     private javax.swing.JPanel pnlCategorias;
     private javax.swing.JPanel pnlImpresoras;
+    private org.edisoncor.gui.panel.PanelImage pnlLupa;
     private javax.swing.JPanel pnlMisCompras;
     private javax.swing.JPanel pnlMouses;
     private javax.swing.JPanel pnlPestañaP1;

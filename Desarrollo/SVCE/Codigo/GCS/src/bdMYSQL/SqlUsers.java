@@ -33,7 +33,7 @@ public class SqlUsers extends ConexionBD{
 
         psUsuario.setInt(1, usr.getId_cliente());
         psUsuario.setString(2, usr.getCorreo());
-        psUsuario.setString(3, usr.getContraseña());
+        psUsuario.setString(3, usr.getPass());
         psUsuario.setString(4, usr.getRol());
 
         int rowsInserted = psUsuario.executeUpdate();
@@ -43,13 +43,13 @@ public class SqlUsers extends ConexionBD{
         return false;
     }
 }
-public boolean ingresar(Usuario usr) throws SQLException {
+public boolean ingresar(Usuario usr){
     String obtenerIdSql = "SELECT u.id_cliente, u.rol, c.nombre, c.apellido, c.dni, c.telefono FROM usuario u LEFT JOIN cliente c ON u.id_cliente = c.id_cliente WHERE u.correo = ? AND u.contrasena = ?";
     
     try (Connection con = conectar();
          PreparedStatement ps = con.prepareStatement(obtenerIdSql)) {
         ps.setString(1, usr.getCorreo());
-        ps.setString(2, usr.getContraseña());
+        ps.setString(2, usr.getPass());
 
         try (ResultSet rs = ps.executeQuery()) {
             if (rs.next()) {
@@ -57,10 +57,8 @@ public boolean ingresar(Usuario usr) throws SQLException {
                 String rol = rs.getString("rol");
                 
                 if (idCliente == -1 || idCliente == 0) {
-                    // Es un administrador sin datos en la tabla "cliente"
                     usr.setRol(rol);
                 } else {
-                    // Es un cliente con datos en la tabla "cliente"
                     usr.setId_cliente(idCliente);
                     usr.setRol(rol);
                     usr.setNombre(rs.getString("nombre"));
@@ -80,8 +78,8 @@ public boolean ingresar(Usuario usr) throws SQLException {
 }
 
     public int existe (String usuario) throws SQLException{
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        PreparedStatement ps;
+        ResultSet rs;
         String sql = "SELECT count(id_usuario) FROM usuario WHERE correo = ?";
         
         try{

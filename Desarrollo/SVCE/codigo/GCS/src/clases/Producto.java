@@ -5,12 +5,14 @@ package Clases;
  */
 public class Producto {
     protected int id_producto;
+    protected double descuento = -1;
     protected String tipo;
     protected String descripcion;
     protected String marca;
     protected double precio;
     protected int stock;
     protected String image;
+    protected int idPromo;
     
     public Producto(){
         
@@ -70,5 +72,21 @@ public class Producto {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int getIdPromo() {
+        return idPromo;
+    }
+
+    public void setIdPromo(int idPromo) {
+        this.idPromo = idPromo;
+    }
+
+    public double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
     }
 }

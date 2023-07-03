@@ -1,386 +1,360 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package gcs;
 
-public class Carrito extends javax.swing.JFrame {
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import Clases.Compra;
+import Clases.ListaCarrito;
 
-    Catalogo frame;
+public class Carrito extends javax.swing.JPanel {
+    int [] cant = {0,0,0,0};
+    double total = 0.0;
+    private static final String FUENTE = "Verdana";
+    org.edisoncor.gui.panel.PanelImage [] paneles = new  org.edisoncor.gui.panel.PanelImage [4];
+    javax.swing.JPanel [] panelesP = new javax.swing.JPanel[4];
+    javax.swing.JLabel [] descripcion = new javax.swing.JLabel[4];
+    javax.swing.JLabel [] cantidad = new javax.swing.JLabel[4];
+    javax.swing.JLabel [] marca = new javax.swing.JLabel[4];
+    javax.swing.JLabel [] tipo = new javax.swing.JLabel[4];
+    javax.swing.JLabel [] precio = new javax.swing.JLabel[4];
+    javax.swing.JButton [] btnMenosP = new javax.swing.JButton[4];
+    javax.swing.JButton [] btnMasP = new javax.swing.JButton[4];
+    javax.swing.JButton [] btnEliminar = new javax.swing.JButton[4];
+    Compra [] producto = new Compra [4];
+    Catalogo cat;
+    //Variables globales
+    int posInicial = 0; 
     public Carrito() {
         initComponents();
-        setLocationRelativeTo(null);    
-        setResizable(false);
+        llenarVector();
+        seleccionP ();
+        manejarCarrito();
+        actualizarTotal();
     }
-
-    public void setFrame (Catalogo origen){
-        this.frame = origen;
-        frame.setEnabled(false);
-    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        MetodosDePagos = new javax.swing.ButtonGroup();
-        jScrollBar1 = new javax.swing.JScrollBar();
-        jPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        pnlDatos = new javax.swing.JPanel();
-        lblDatos = new javax.swing.JLabel();
-        pnlMetodos = new javax.swing.JPanel();
-        lblMetodos = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        btnContinuar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        lblImageVisa = new javax.swing.JLabel();
-        lblImageMaster = new javax.swing.JLabel();
-        lblImageBBVA = new javax.swing.JLabel();
-        btnVolver = new javax.swing.JButton();
-        btnListaCompras = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        txtDNI = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
-        txtCorreo = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
-        txtDireccion = new javax.swing.JTextField();
+        carritoVacio = new javax.swing.JPanel();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
+        lblCarritoVacio = new javax.swing.JLabel();
+        lblAgregarProducto = new javax.swing.JLabel();
+        btnSeguir = new org.edisoncor.gui.button.ButtonRound();
+        javax.swing.JLabel lblSubtotal = new javax.swing.JLabel();
+        lblCostoSub = new javax.swing.JLabel();
+        lblCostoTotal = new javax.swing.JLabel();
+        javax.swing.JLabel lblTotal = new javax.swing.JLabel();
+        btnPagar = new org.edisoncor.gui.button.ButtonRound();
+        javax.swing.JPanel contenedor = new javax.swing.JPanel();
+        btnSiguiente = new javax.swing.JButton();
+        panel1 = new javax.swing.JPanel();
+        panel2 = new javax.swing.JPanel();
+        panel3 = new javax.swing.JPanel();
+        panel4 = new javax.swing.JPanel();
+        btnAtras = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        carritoVacio.setBackground(new java.awt.Color(255, 255, 255));
+        carritoVacio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CarritoVacio.png"))); // NOI18N
+        carritoVacio.add(panelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 120, 120));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CARRITO DE COMPRAS");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, 40));
+        lblCarritoVacio.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lblCarritoVacio.setForeground(new java.awt.Color(0, 0, 0));
+        lblCarritoVacio.setText("Tu Carro de Compras está vacío");
+        carritoVacio.add(lblCarritoVacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 430, 30));
 
-        jPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 817, -1));
+        lblAgregarProducto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblAgregarProducto.setForeground(new java.awt.Color(0, 0, 0));
+        lblAgregarProducto.setText("Agrega productos ahora");
+        carritoVacio.add(lblAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 200, -1));
 
-        pnlDatos.setBackground(new java.awt.Color(255, 153, 0));
-        pnlDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlDatos.setForeground(new java.awt.Color(255, 153, 0));
+        btnSeguir.setBackground(new java.awt.Color(255, 153, 0));
+        btnSeguir.setText("Seguir Comprando");
+        btnSeguir.setColorDeSombra(new java.awt.Color(85, 105, 204));
+        btnSeguir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSeguir.addActionListener(evt -> btnSeguirActionPerformed());
+        carritoVacio.add(btnSeguir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 210, 40));
 
-        lblDatos.setBackground(new java.awt.Color(255, 255, 255));
-        lblDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDatos.setForeground(new java.awt.Color(255, 255, 255));
-        lblDatos.setText("DATOS");
+        add(carritoVacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 590));
 
-        javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
-        pnlDatos.setLayout(pnlDatosLayout);
-        pnlDatosLayout.setHorizontalGroup(
-            pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(lblDatos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlDatosLayout.setVerticalGroup(
-            pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblDatos)
-                .addContainerGap())
-        );
+        lblSubtotal.setFont(new java.awt.Font(FUENTE, 0, 16));
+        lblSubtotal.setForeground(new java.awt.Color(45, 45, 45));
+        lblSubtotal.setText("SubTotal");
+        add(lblSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 100, 20));
+        add(lblCostoSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 70, 20));
+        add(lblCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 70, 20));
 
-        jPanel.add(pnlDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+        lblTotal.setFont(new java.awt.Font(FUENTE, 1, 14));
+        lblTotal.setForeground(new java.awt.Color(102, 102, 102));
+        lblTotal.setText("Total");
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, 40, 20));
 
-        pnlMetodos.setBackground(new java.awt.Color(255, 153, 0));
-        pnlMetodos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlMetodos.setForeground(new java.awt.Color(255, 153, 0));
+        btnPagar.setBackground(new java.awt.Color(255, 153, 0));
+        btnPagar.setText("IR A PAGAR");
+        btnPagar.setColorDeSombra(new java.awt.Color(85, 105, 204));
+        btnPagar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnPagar.addActionListener(evt -> btnMetodoPagoActionPerformed());
+        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, 40));
 
-        lblMetodos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMetodos.setForeground(new java.awt.Color(255, 255, 255));
-        lblMetodos.setText("MÉTODO DE PAGO");
+        contenedor.setBackground(new java.awt.Color(235, 235, 235));
+        contenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout pnlMetodosLayout = new javax.swing.GroupLayout(pnlMetodos);
-        pnlMetodos.setLayout(pnlMetodosLayout);
-        pnlMetodosLayout.setHorizontalGroup(
-            pnlMetodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMetodosLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(lblMetodos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlMetodosLayout.setVerticalGroup(
-            pnlMetodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMetodosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMetodos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(evt -> btnSiguienteActionPerformed());
+        contenedor.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 530, -1, -1));
 
-        jPanel.add(pnlMetodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 345, -1, -1));
+        panel1.setBackground(new java.awt.Color(235, 235, 235));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        contenedor.add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 510, 120));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel4.setText("Nombre");
-        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
+        panel2.setBackground(new java.awt.Color(235, 235, 235));
+        panel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        contenedor.add(panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 510, 120));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Indique los datos de la persona quien recepcionará los productos");
-        jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
+        panel3.setBackground(new java.awt.Color(235, 235, 235));
+        panel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        contenedor.add(panel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 510, 120));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel6.setText("DNI");
-        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+        panel4.setBackground(new java.awt.Color(235, 235, 235));
+        panel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        contenedor.add(panel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 510, 120));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel7.setText("Dirección");
-        jPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
+        btnAtras.setText("Atrás");
+        btnAtras.addActionListener(evt -> btnAtrasActionPerformed());
+        contenedor.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
+        btnAtras.setVisible(false);
 
-        txtNombre.setBorder(null);
-        jPanel.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 350, 20));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel8.setText("Correo");
-        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
-
-        btnContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FlechaContinuar.png"))); // NOI18N
-        btnContinuar.setText("Continuar");
-        btnContinuar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnContinuar.setBorderPainted(false);
-        btnContinuar.setContentAreaFilled(false);
-        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuarActionPerformed(evt);
-            }
-        });
-        jPanel.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 100, 30));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        MetodosDePagos.add(jRadioButton1);
-        jRadioButton1.setText("VISA");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        MetodosDePagos.add(jRadioButton2);
-        jRadioButton2.setText("MasterCard");
-
-        MetodosDePagos.add(jRadioButton3);
-        jRadioButton3.setText("BBVA");
-
-        lblImageVisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/visa (1).png"))); // NOI18N
-
-        lblImageMaster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mastercard (1).png"))); // NOI18N
-
-        lblImageBBVA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bbvaa.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImageVisa)
-                    .addComponent(jRadioButton1))
-                .addGap(112, 112, 112)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImageMaster)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImageBBVA, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton3))
-                .addGap(34, 34, 34))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jRadioButton1))
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblImageMaster)
-                        .addComponent(lblImageVisa))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lblImageBBVA)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 150));
-
-        btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FlechaVolver.png"))); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnVolver.setBorderPainted(false);
-        btnVolver.setContentAreaFilled(false);
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        jPanel.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, 90, 30));
-
-        btnListaCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bienes (1).png"))); // NOI18N
-        btnListaCompras.setBorder(null);
-        btnListaCompras.setBorderPainted(false);
-        btnListaCompras.setContentAreaFilled(false);
-        btnListaCompras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaComprasActionPerformed(evt);
-            }
-        });
-        jPanel.add(btnListaCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 200, 70, 70));
-
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 350, 20));
-
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 350, 20));
-
-        txtDNI.setBorder(null);
-        jPanel.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 350, 20));
-
-        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 350, 20));
-
-        txtCorreo.setBorder(null);
-        jPanel.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 350, 20));
-
-        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 350, 20));
-
-        txtDireccion.setBorder(null);
-        jPanel.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 350, 20));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        pack();
+        add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 590));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnListaComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaComprasActionPerformed
-      ListaDeCompras obj = new ListaDeCompras();
-      obj.setVisible(true);
-      obj.setFrame(this);
-      this.setVisible(false);
-      this.setResizable(false);
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnListaComprasActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-
-    }//GEN-LAST:event_btnContinuarActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        frame.setVisible(true);
-        this.setVisible(false);
-        frame.setEnabled(true);
-        frame.toFront();
-      
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Carrito().setVisible(true);
-            }
-        });
+    
+    private void manejarCarrito(){
+        if (ListaCarrito.getSize() != 0)
+            carritoVacio.setVisible(false);
+        else
+            carritoVacio.setVisible(true);
     }
+    
+    public void setFrame(Catalogo cat){
+        this.cat = cat;
+    }
+    
+    private void btnSiguienteActionPerformed() {                                             
+        posInicial += 4;
+        seleccionP();
+        btnAtras.setVisible(true);
+    }   
+    
+    private void btnAtrasActionPerformed() {                                         
+        posInicial -= 4;
+        if (posInicial < 4){
+            btnAtras.setVisible(false);
+            posInicial = 0;
+        }else
+            btnAtras.setVisible(true);
+        btnSiguiente.setVisible(true);
+        seleccionP();
+    }   
+    
+    private void btnMetodoPagoActionPerformed() {                                              
+        ProcesarPago pago = new ProcesarPago(); 
+        pago.setSize(830, 520);
+        pago.setLocation(0, 0);
+        this.removeAll();
+        this.add(pago, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,-1,-1));
+        this.revalidate();
+    }  
+    
+    private void btnSeguirActionPerformed() {  
+        cat.setIndex(0);
+    }
+    private void llenarVector(){
+        panelesP [0] = panel1;
+        panelesP [1] = panel2;
+        panelesP [2] = panel3;
+        panelesP [3] = panel4;
+    }
+    
+    private void actualizarTotal (){
+        total = ListaCarrito.getTotal();
+        lblCostoSub.setText("" + total);
+        lblCostoTotal.setText("" + total);
+    }
+    
+    private void iniciarCarrito (int i){
+        //Limpia ventana de productos.
+        panelesP[i].removeAll();
+        panelesP[i].revalidate();
+        
+        //Paneles imagenes
+        paneles [i] = new  org.edisoncor.gui.panel.PanelImage();
+        paneles[i].setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        paneles[i].setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlProducto1Layout = new javax.swing.GroupLayout(paneles[i]);
+        paneles[i].setLayout(pnlProducto1Layout);
+        pnlProducto1Layout.setHorizontalGroup(
+            pnlProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        pnlProducto1Layout.setVerticalGroup(
+            pnlProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panelesP[i].add(paneles[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        
+        //Labels descripcion
+        descripcion[i] = new javax.swing.JLabel();
+        descripcion[i].setFont(new java.awt.Font(FUENTE, 1, 13));
+        panelesP[i].add(descripcion[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 250, 20));
+        
+        //Labels precio
+        precio[i] = new javax.swing.JLabel();
+        precio[i].setFont(new java.awt.Font(FUENTE, 1, 13)); // NOI18N
+        precio[i].setForeground(new java.awt.Color(85, 105, 204));
+        panelesP[i].add(precio[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 70, -1));
+
+        // labels tipo
+        tipo[i] = new javax.swing.JLabel();
+        tipo[i].setFont(new java.awt.Font(FUENTE, 1, 13));
+        tipo[i].setForeground(new Color(102,102,102));
+        panelesP[i].add(tipo[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 250, 20));
+        
+        // labels marcas
+        marca[i] = new javax.swing.JLabel();
+        marca[i].setFont(new java.awt.Font(FUENTE, 1, 13));
+        marca[i].setForeground(new Color(102,102,102));
+        panelesP[i].add(marca[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 250, 20));
+        
+        //Boton menos
+        btnMenosP[i]= new javax.swing.JButton();
+        btnMenosP[i].setText("-");
+        panelesP[i].add(btnMenosP[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        
+        btnMenosP[i].addActionListener(evt -> btnMenosActionPerformed(i));
+        
+        //Boton mas
+        btnMasP[i]= new javax.swing.JButton();
+        btnMasP[i].setText("+");
+        panelesP[i].add(btnMasP[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
+        
+        btnMasP[i].addActionListener(evt -> btnMasActionPerformed(i));
+        
+        //Boton eliminar
+        btnEliminar[i]= new javax.swing.JButton();
+        btnEliminar[i].setText("×");
+        btnEliminar[i].setBackground(new Color(246,53,55));
+        btnEliminar[i].setForeground(Color.WHITE);
+        btnEliminar[i].setFont(new java.awt.Font(FUENTE, 0, 14));
+        panelesP[i].add(btnEliminar[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 48, -1, -1));
+        
+        btnEliminar[i].addActionListener(evt -> btnEliminarActionPerformed(i));
+        
+        //Labels cantidad
+        cantidad[i] = new javax.swing.JLabel();
+        cantidad[i].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panelesP[i].add(cantidad[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 55, 35, 20));
+        
+        //Rellenando compras
+        actualizarTotal();
+    }
+    
+    public void btnEliminarActionPerformed(int i){
+        if (JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el producto?", "Eliminar producto",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            ListaCarrito.getDataList().remove(i);
+            seleccionP();
+            actualizarTotal();
+            Catalogo catalogo = Catalogo.getInstance();
+            catalogo.actualizarCarrito();
+            if (ListaCarrito.getSize()== 0)
+                carritoVacio.setVisible(true);
+        }
+    }
+    
+    public void btnMenosActionPerformed(int i){
+        cant[i] = Integer.parseInt(cantidad[i].getText());
+        if (cant[i] > 1){
+            cant[i]--;
+            cantidad[i].setText("" + cant[i]);
+            ListaCarrito.getDataList().get(i).setCantidad(cant[i]);
+            actualizarTotal();
+        }
+        precio[i].setText("S/ " + cant[i] * ListaCarrito.getDataList().get(i).getProducto().getPrecio());
+    }
+    
+    public void btnMasActionPerformed(int i){
+        cant[i] = Integer.parseInt(cantidad[i].getText());
+        if (cant[i] < 10){
+            cant[i]++;
+            cantidad[i].setText("" + cant[i]);
+            ListaCarrito.getDataList().get(i).setCantidad(cant[i]);
+            actualizarTotal();
+        }
+        precio[i].setText("S/ " + cant[i] * ListaCarrito.getDataList().get(i).getProducto().getPrecio());
+    }
+    
+    private void seleccionP (){
+        int posFinal = Math.min(posInicial + 4, ListaCarrito.getDataList().size());
+        int j = 0;
+        limpiarCatalogo();
+        for (int i = posInicial; j < 4 && i < ListaCarrito.getDataList().size(); i++, j++) {
+            panelesP[j].setVisible(true);
+            iniciarCarrito (j);
+            actualizarProductos(i, j);
+        }
+        if(posFinal >= ListaCarrito.getDataList().size() || j < 4){
+            btnSiguiente.setVisible(false);
+        }
+    }
+    private void limpiarCatalogo(){
+        for (int i = 0; i < 4; i++){
+            panelesP[i].setVisible(false);
+        }
+    }
+    private void actualizarProductos( int i, int j) {
+        String image = ListaCarrito.getDataList().get(i).getProducto().getImage();
+        double precioCantidad;
+            paneles[j].setVisible(true);
+            descripcion[j].setVisible(true);
+            cantidad[j].setVisible(true);
+        try {
+            paneles[j].setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));
+            paneles[j].repaint();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar imagen: ", "Error de carga", JOptionPane.ERROR_MESSAGE);
+        }
+        descripcion[j].setText(ListaCarrito.getDataList().get(i).getProducto().getDescripcion());
+        precioCantidad = ListaCarrito.getDataList().get(i).getCantidad()*ListaCarrito.getDataList().get(i).getProducto().getDescuento();
+        precio[j].setText("S/ " + precioCantidad);
+        producto[j] = ListaCarrito.getDataList().get(i);
+        cantidad[j].setText(""+ListaCarrito.getDataList().get(i).getCantidad());
+        marca[j].setText("Marca: " + ListaCarrito.getDataList().get(i).getProducto().getMarca());
+        tipo[j].setText(ListaCarrito.getDataList().get(i).getProducto().getTipo());
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.ButtonGroup MetodosDePagos;
-    private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton btnListaCompras;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JLabel lblDatos;
-    private javax.swing.JLabel lblImageBBVA;
-    private javax.swing.JLabel lblImageMaster;
-    private javax.swing.JLabel lblImageVisa;
-    private javax.swing.JLabel lblMetodos;
-    private javax.swing.JPanel pnlDatos;
-    private javax.swing.JPanel pnlMetodos;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDNI;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JButton btnAtras;
+    private org.edisoncor.gui.button.ButtonRound btnPagar;
+    private org.edisoncor.gui.button.ButtonRound btnSeguir;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JPanel carritoVacio;
+    private javax.swing.JLabel lblAgregarProducto;
+    private javax.swing.JLabel lblCarritoVacio;
+    private javax.swing.JLabel lblCostoSub;
+    private javax.swing.JLabel lblCostoTotal;
+    private javax.swing.JPanel panel1;
+    private javax.swing.JPanel panel2;
+    private javax.swing.JPanel panel3;
+    private javax.swing.JPanel panel4;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
     // End of variables declaration//GEN-END:variables
 }

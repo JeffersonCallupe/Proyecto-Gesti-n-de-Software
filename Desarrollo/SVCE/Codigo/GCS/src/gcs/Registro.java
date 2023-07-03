@@ -66,6 +66,7 @@ public class Registro extends javax.swing.JFrame {
         btnCancelar = new images.PanelRound1();
         lblCancelar = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(720, 562));
         setUndecorated(true);
         setResizable(false);
@@ -331,7 +332,7 @@ public class Registro extends javax.swing.JFrame {
                         u.setTelefono(tel);
                         u.setCorreoE (correoE);
                         u.setCorreo (correo);
-                        u.setContraseña(pass);
+                        u.setPass(pass);
                         u.setRol("cliente");
                         if (mod.registrar(u)){
                             JOptionPane.showMessageDialog(null, "Ha sido registrado correctamente.");

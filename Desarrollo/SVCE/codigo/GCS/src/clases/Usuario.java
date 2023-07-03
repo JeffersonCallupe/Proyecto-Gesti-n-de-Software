@@ -11,19 +11,13 @@ public class Usuario {
     protected String apellido;
     protected String dni;
     protected String telefono;
-    protected String correoE;
-    protected String direccion;
-    protected String ciudad;
-    protected String correo;
-    protected String contraseña;
     protected String rol;
+    private String correoE;
+    private String correo;
+    private String pass;
 
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public Usuario (){
+        //Constructor
     }
 
     public String getNombre() {
@@ -42,6 +36,30 @@ public class Usuario {
         this.apellido = apellido;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+    
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -58,44 +76,12 @@ public class Usuario {
         this.correoE = correoE;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public int getId_cliente() {
@@ -106,14 +92,11 @@ public class Usuario {
         this.id_cliente = id_cliente;
     }
 
-    public String getDni() {
-        return dni;
+    public String getRol() {
+        return rol;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
-    
-    
-    
 }

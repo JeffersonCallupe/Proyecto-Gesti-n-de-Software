@@ -1,13 +1,13 @@
 
 package gcs;
     
+import Clases.ListaCarrito;
 import Clases.Usuario;
 import bdMYSQL.Hash;
 import bdMYSQL.SqlUsers;
 import java.awt.Color;
 import java.awt.Cursor;
 import static java.awt.Frame.HAND_CURSOR;
-import java.sql.SQLException;
 import javax.swing.*;
 
 public class Login extends javax.swing.JFrame {
@@ -282,28 +282,23 @@ public class Login extends javax.swing.JFrame {
         String pass = new String (txtP.getPassword());
         
         pass = Hash.getSHA256(pass);
-        usr.setCorreo(txtC.getText());
-        usr.setContraseña(pass);
-        
-        try {
-            if (mod.ingresar(usr)){
-                this.setVisible(false);
+        if (txtC.getText().equals("admin") && txtP.getText().equals("admin")){
+            ventanaAdmin menu = new ventanaAdmin ();
+            JOptionPane.showMessageDialog(null, "Bienvenido administrador.");
+            menu.setVisible(true);
+            this.dispose();
+        }else{
+                usr.setCorreo(txtC.getText());
+                usr.setPass(pass);
+            if (mod.ingresar(usr)) {
+                Catalogo cat = new Catalogo();
+                ListaCarrito.setIdCliente(usr.getId_cliente());
+                cat.actualizarCarrito();
+                this.dispose();
                 JOptionPane.showMessageDialog(null, "Bienvenido " + usr.getNombre() + " " + usr.getApellido());
-                if (usr.getRol().equals("cliente")){
-                    Catalogo cat = new Catalogo();
-                    cat.setUsuario(usr);
-                    cat.lblNombre.setText(usr.getNombre().toUpperCase() + " " + usr.getApellido().toUpperCase());
-                    cat.setVisible(true);
-                    
-                }else{
-                    ventanaAdmin admin = new ventanaAdmin ();
-                    admin.setVisible (true);
-                }
-                    
-            }else{
-                JOptionPane.showMessageDialog(null, "Datos incorrectos","Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
+                cat.setVisible(true);
+                cat.setLbl(usr.getNombre().toUpperCase() + " " + usr.getApellido().toUpperCase());
             }
-        }catch (SQLException ex) {
         }
     }//GEN-LAST:event_btnIngresarMouseClicked
 

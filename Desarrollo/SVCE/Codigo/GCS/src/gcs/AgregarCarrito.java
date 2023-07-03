@@ -4,12 +4,10 @@
  */
 package gcs;
 
-import Clases.ListaCompras;
+import Clases.Compra;
+import Clases.ListaCarrito;
 import Clases.Producto;
-import Clases.Usuario;
-import Clases.compras;
 import java.awt.Color;
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +18,6 @@ public class AgregarCarrito extends javax.swing.JFrame {
     int i = 0;
     int coordX, coordY;
     Producto prod;
-    Usuario usr;
     Catalogo frame;
     public AgregarCarrito() {
         this.setUndecorated(true);
@@ -33,18 +30,28 @@ public class AgregarCarrito extends javax.swing.JFrame {
         this.frame = cat;
         frame.setEnabled(false);
     }
-    
-    public void setUsuario (Usuario usr){
-        this.usr = usr;
-    }
      
+    public void setPromocion (){
+        pnlDescuento.setVisible(true);
+        lblDescuento.setVisible(true);
+        lblNumberDescuento.setText("S/. " + String.format("%.2f", prod.getDescuento()));
+    } 
+    
     void iniciarComponentes(Producto producto){
         prod = producto;
+        int verificacion = ListaCarrito.verificarExiste(prod);
         lblDescripcion.setText(strHTML(producto.getDescripcion()));
         lblMarca.setText(producto.getMarca());
-        imgProducto.setIcon(new javax.swing.ImageIcon (getClass().getResource(producto.getImage())));
-        imgProducto.repaint();
+        try{
+            imgProducto.setIcon(new javax.swing.ImageIcon (getClass().getResource(producto.getImage())));
+            imgProducto.repaint();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al cargar imagen: ", "Error de carga", JOptionPane.ERROR_MESSAGE);
+        }
         lblPrecio.setText("S/ " + producto.getPrecio());
+        if (verificacion != -1)
+            i = ListaCarrito.getDataList().get(verificacion).getCantidad();
+        txtCant.setText("" + i);
     }
     
     public String strHTML (String text){
@@ -56,6 +63,10 @@ public class AgregarCarrito extends javax.swing.JFrame {
     private void initComponents() {
 
         contenedor = new images.PanelRound1();
+        pnlDescuento = new javax.swing.JPanel();
+        lblDescuento = new javax.swing.JLabel();
+        lblDescuento.setVisible(false);
+        lblNumberDescuento = new javax.swing.JLabel();
         imgProducto = new org.edisoncor.gui.panel.PanelImage();
         lblTitulo = new javax.swing.JLabel();
         lblTDescripcion = new javax.swing.JLabel();
@@ -73,6 +84,7 @@ public class AgregarCarrito extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(470, 420));
         setUndecorated(true);
         setResizable(false);
@@ -94,6 +106,31 @@ public class AgregarCarrito extends javax.swing.JFrame {
             }
         });
         contenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlDescuento.setBackground(new java.awt.Color(255, 0, 0));
+        pnlDescuento.setVisible(false);
+
+        javax.swing.GroupLayout pnlDescuentoLayout = new javax.swing.GroupLayout(pnlDescuento);
+        pnlDescuento.setLayout(pnlDescuentoLayout);
+        pnlDescuentoLayout.setHorizontalGroup(
+            pnlDescuentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 75, Short.MAX_VALUE)
+        );
+        pnlDescuentoLayout.setVerticalGroup(
+            pnlDescuentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        contenedor.add(pnlDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 75, 2));
+
+        lblDescuento.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblDescuento.setForeground(new java.awt.Color(255, 0, 0));
+        lblDescuento.setText("¡OFERTA!");
+        contenedor.add(lblDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 100, -1));
+
+        lblNumberDescuento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNumberDescuento.setForeground(new java.awt.Color(255, 0, 0));
+        contenedor.add(lblNumberDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 100, 30));
 
         javax.swing.GroupLayout imgProductoLayout = new javax.swing.GroupLayout(imgProducto);
         imgProducto.setLayout(imgProductoLayout);
@@ -228,27 +265,34 @@ public class AgregarCarrito extends javax.swing.JFrame {
     }//GEN-LAST:event_contenedorMousePressed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        ListaCompras list = new ListaCompras();
-        list.setIdProducto(prod.getId_producto());
-        if (usr != null){
-            list.setIdCliente(usr.getId_cliente());
-            list.setNombre(prod.getDescripcion());
-            list.setFecha(LocalDate.now());
-            list.setCantidad(Integer.parseInt(txtCant.getText()));
-            list.setPrecio(prod.getPrecio());
-            compras.productos.add(list);
-            JOptionPane.showMessageDialog(null, "Añadido a su carrito.");
-            this.setVisible(false);
-            frame.setEnabled(true);
-            frame.toFront(); 
+        int cantidad = Integer.parseInt(txtCant.getText());
+        int verificacion = ListaCarrito.verificarExiste(prod);
+        if (cantidad != 0){
+            String [] botones = { "Ir al carrito", "Seguir comprando"};
+            Compra compra = new Compra(prod, cantidad);
+            if (verificacion == -1)
+                ListaCarrito.addData(compra);
+            else
+                ListaCarrito.actualizarCant(cantidad, verificacion);
+            int seleccion = JOptionPane.showOptionDialog(
+                null,
+                "Añadido a su carrito", 
+                "Carrito",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                botones,
+                botones[0]);
+
+            if (seleccion == 0){
+                frame.buscador(false);
+                frame.activarCarrito();
+            }
         }
-        else{
-            this.setVisible(false);
-            frame.dispose();
-            JOptionPane.showMessageDialog(null, "Inicie sesión para continuar.");
-            Login log = new Login ();
-            log.setVisible(true);
-        }
+        frame.actualizarCarrito();
+        this.setVisible(false);
+        frame.setEnabled(true);
+        frame.toFront(); 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
@@ -294,15 +338,18 @@ public class AgregarCarrito extends javax.swing.JFrame {
     private images.PanelRound1 contenedor;
     private org.edisoncor.gui.panel.PanelImage imgProducto;
     private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblDescuento;
     private javax.swing.JLabel lblMarca;
     private javax.swing.JLabel lblMas;
     private javax.swing.JLabel lblMenos;
+    private javax.swing.JLabel lblNumberDescuento;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblTCantidad;
     private javax.swing.JLabel lblTDescripcion;
     private javax.swing.JLabel lblTMarca;
     private javax.swing.JLabel lblTPrecio;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlDescuento;
     private javax.swing.JTextField txtCant;
     // End of variables declaration//GEN-END:variables
 }

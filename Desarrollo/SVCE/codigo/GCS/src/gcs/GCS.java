@@ -16,7 +16,7 @@ public class GCS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ventanaAdmin abrir= new ventanaAdmin();
+        Login abrir = new Login();
         abrir.setVisible(true);// TODO code application logic here
     }
     
