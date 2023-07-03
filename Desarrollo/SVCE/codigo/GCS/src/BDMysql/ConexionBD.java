@@ -1,5 +1,6 @@
-package BDMysql;
+package bdMYSQL;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class ConexionBD {
     String driver = "com.mysql.cj.jdbc.Driver";
@@ -12,13 +13,11 @@ public class ConexionBD {
     
     public Connection conectar()
     {
-        try
-        {
+        try{
             conn = DriverManager.getConnection(url, username, password);
         }
-        catch(Exception e)
-        {
-            e.printStackTrace();
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos.", "Error de conexión",JOptionPane.ERROR_MESSAGE);
         }
         
         return conn;
