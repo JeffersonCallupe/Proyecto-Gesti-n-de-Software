@@ -1,4 +1,4 @@
-package clases;
+package Clases;
 /**
  *
  * @author CRISTHIAN
@@ -10,6 +10,7 @@ public class Producto {
     protected String marca;
     protected double precio;
     protected int stock;
+    protected String image;
     
     public Producto(){
         
@@ -53,5 +54,21 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
